@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome | Al-Hira Education Centre</title>
+  <title>Videos | Al-Hira Education Centre</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -15,7 +15,7 @@
 <nav class="top-nav">
   <ul>
     <li><a href="index.html">Home</a></li>
-    <li><a href="index2.html">Videos</a></li>
+    <li><a href="videos.html">Videos</a></li>
     <li><a href="prayer.html">Prayer Times</a></li>
     <li><a href="about.html">About</a></li>
   </ul>
@@ -29,14 +29,24 @@
 
     <h1>Welcome to the Al-Hira Education Centre</h1>
     <p>A space of presence, prayer, and peace</p>
+
+
+    
+     
+
+
+
   </header>
 
 
  <!-- HTML Element to Display Time -->
 <div id="current-time"></div>
 
+<h2>Echos of Faith</h2> 
+
+
 <section class="livestream-wrapper">
-  <h2>📺 Live from the Masjid</h2>
+  <h2>📺 Live from Al-Hira Education Centre.</h2>
   <p id="liveStatus">The stream will appear here when we go live, insha’Allah.</p>
   <iframe width="100%" height="500"
     src="https://www.youtube.com/embed/live_stream?channel=UCZK3bZ7eJvU1ZzqkKZ2ZJ9gA"
@@ -45,6 +55,46 @@
     allowfullscreen>
   </iframe>
 </section>
+
+
+
+
+<div class="video-section">
+  <h2>📺 Latest Video</h2>
+  <div id="video-title" class="video-title"></div>
+  <div id="latest-video" class="video-wrapper"></div>
+</div>
+
+<script>
+  const channelId = 'UCRTm9vAELz-tC4zpDj-GiYw'; // Replace with actual channel ID
+  const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+  const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      if (data.items && data.items.length > 0) {
+        const video = data.items[0];
+        const videoId = video.link.split('=')[1];
+
+        // Set title
+        document.getElementById('video-title').innerText = video.title;
+
+        // Embed video
+        const iframe = `
+          <iframe src="https://www.youtube.com/embed/${videoId}"
+            frameborder="0" allowfullscreen></iframe>`;
+        document.getElementById('latest-video').innerHTML = iframe;
+      } else {
+        document.getElementById('latest-video').innerHTML = '<p>No videos found.</p>';
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching video:', error);
+      document.getElementById('latest-video').innerHTML = '<p>Unable to load video.</p>';
+    });
+</script>
+
 
 <div class="video-wrapper">
   <iframe 

@@ -126,7 +126,7 @@ h1 {
   max-width: 900px;
   margin: 40px auto;
   padding: 20px;
-  background-color: #fffdd0;
+  background-color: #ffbf5f;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
   text-align: center;
@@ -451,14 +451,14 @@ img {
 
 .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 30.85%; /* 21:9 aspect ratio */
   height: 0;
   overflow: hidden;
   margin: 30px auto;
   max-width: 800px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
-  background-color: #fffdd0;
+  background-color: #ffbf5f;
 }
 
 .video-wrapper iframe {
@@ -504,6 +504,59 @@ img {
   font-style: italic;
   color: #555;
 }
+
+
+.video-section {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.video-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #444;
+  text-align: center;
+}
+
+.video-title {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #555;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 42.85%; /* Adjust aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  background-color: #ffbf5f;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
+
+
+
+
+
+h2 {
+  margin-top: 30px; /* Adjust as needed */
+}
+
 
 
 body {
