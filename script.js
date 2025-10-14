@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getNextPrayer() {
     const now = new Date();
-    const order = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+    const order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
     const sorted = prayerSchedule.slice().sort((a, b) => parseDateOnlyLocal(a.date) - parseDateOnlyLocal(b.date));
     for (const day of sorted) {
       const dayStart = parseDateOnlyLocal(day.date);
@@ -134,21 +134,4 @@ const rawdahMode = true; // or toggle this manually
 
 if (isNight || rawdahMode) {
   createLanternTrail();
-
-
-
-
-
-  const trigger = document.getElementById("timetableTrigger");
-const modal = document.getElementById("timetableModal");
-const closeBtn = document.getElementById("closeModal");
-
-trigger.addEventListener("click", () => {
-  modal.classList.add("show");
-});
-
-closeBtn.addEventListener("click", () => {
-  modal.classList.remove("show");
-});
 }
-
