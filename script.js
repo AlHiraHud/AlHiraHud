@@ -83,6 +83,29 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+ function getNextPrayer() {
+  const now = new Date();
+  const order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
+
+  const sorted = prayerSchedule
+    .map(entry => {
+      const dayStart = new Date(entry.date);
+      return order.map(name => {
+        const t = entry.times[name];
+        if (!t) return null;
+        const [hh, mm] = t.split(":").map(Number);
+        const timeObj = new Date(dayStart.getFullYear(), dayStart.getMonth(), dayStart.getDate(), hh, mm);
+        return { name, timeStr: t, timeObj, date: entry.date };
+      }).filter(Boolean);
+    })
+    .flat()
+    .filter(p => p.timeObj > now);
+
+  return sorted.length ? sorted[0] : null;
+}
+
+
+
     const now = new Date();
     const diff = Math.max(0, next.timeObj - now);
     const totalSec = Math.floor(diff / 1000);
@@ -143,5 +166,11 @@ if (isNight || rawdahMode) {
   createLanternTrail();
 }
 
-
+(function() {
+  const now = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const formatted = now.toLocaleDateString('en-GB', options);
+  const el = document.getElementById("table-date");
+  if (el) el.innerText = `Prayer Begining Times For ${formatted}`;
+})();
 
