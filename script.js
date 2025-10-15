@@ -4,17 +4,6 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  const sidebar = document.getElementById("sidebar");
-  const toggleBtn = document.getElementById("menu-toggle");
-  const closeBtn = document.getElementById("close-btn");
-
-  
-});
-
-  // Full prayer schedule for October 2025
   const prayerSchedule = [
     { date: "2025-10-12", times: { Fajr: "05:32", Sunrise: "07:24", Dhuhr: "12:54", Asr: "16:23", Maghrib: "18:20", Isha: "20:14" } },
     { date: "2025-10-13", times: { Fajr: "05:34", Sunrise: "07:26", Dhuhr: "12:53", Asr: "16:21", Maghrib: "18:18", Isha: "20:11" } },
@@ -38,28 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { date: "2025-10-31", times: { Fajr: "05:06", Sunrise: "07:00", Dhuhr: "11:51", Asr: "14:45", Maghrib: "16:39", Isha: "18:35" } }
   ];
 
-  function parseDateOnlyLocal(yyyyMMdd) {
-    const [y, m, d] = yyyyMMdd.split("-").map(Number);
-    return new Date(y, m - 1, d, 0, 0, 0, 0);
-  }
-
-  function getNextPrayer() {
-    const now = new Date();
-    const order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
-    const sorted = prayerSchedule.slice().sort((a, b) => parseDateOnlyLocal(a.date) - parseDateOnlyLocal(b.date));
-    for (const day of sorted) {
-      const dayStart = parseDateOnlyLocal(day.date);
-      for (const name of order) {
-        const t = day.times[name];
-        if (!t) continue;
-        const [hh, mm] = t.split(":").map(Number);
-        const dt = new Date(dayStart.getFullYear(), dayStart.getMonth(), dayStart.getDate(), hh, mm, 0, 0);
-        if (dt > now) return { name, timeObj: dt, timeStr: t, date: day.date };
-      }
-    }
-    return null;
-  }
-
   function updateClock() {
     const now = new Date();
     const hh = String(now.getHours()).padStart(2, "0");
@@ -68,36 +35,69 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("current-time").innerText = `Current Time: ${hh}:${mm}:${ss}`;
   }
 
-  function updateNextPrayer() {
+  function updatePrayerTable() {
+    const today = new Date().toISOString().split("T")[0];
+    const todaySchedule = prayerSchedule.find(entry => entry.date === today);
+    if (!todaySchedule) return;
+
+    const prayers = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
+    for (const name of prayers) {
+      const cell = document.querySelector(`td[data-prayer="${name}"]`);
+      if (cell) {
+        cell.innerText = todaySchedule.times[name] || "—";
+      }
+    }
+  }
+
+  function getNextPrayer() {
+    const now = new Date();
+    const today = new Date().toISOString().split("T")[0];
+    const todaySchedule = prayerSchedule.find(entry => entry.date === today);
+    if (!todaySchedule) return null;
+
+    const order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
+    for (const name of order) {
+      const timeStr = todaySchedule.times[name];
+      if (!timeStr) continue;
+      const [hh, mm] = timeStr.split(":").map(Number);
+      const prayerTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hh, mm);
+      if (prayerTime > now) {
+        return { name, timeStr, timeObj: prayerTime };
+      }
+    }
+    return null;
+  }
+
+  function updateCountdown() {
     const container = document.getElementById("next-prayer");
     const next = getNextPrayer();
-    console.log("Next prayer:", next.name, next.timeStr, "on", next.date);
     if (!next) {
-      container.innerText = "No upcoming prayer times in the schedule.";
-      container.className = "";
+      container.innerText = "No upcoming prayer today.";
       return;
     }
-    const diff = Math.max(0, next.timeObj - new Date());
-    if (diff === 0) {
-      container.innerText = `🕌 It's time for ${next.name} (${next.timeStr})`;
-      container.className = "prayer-alert";
-      return;
-    }
+
+    const now = new Date();
+    const diff = Math.max(0, next.timeObj - now);
     const totalSec = Math.floor(diff / 1000);
     const hours = Math.floor(totalSec / 3600);
     const minutes = Math.floor((totalSec % 3600) / 60);
     const seconds = totalSec % 60;
-  container.innerHTML = `Next: ${next.name} at ${next.timeStr} — in ${hours}h ${minutes}m ${seconds}s <span style="font-size: 0.8em; color: #666;">(${next.date})</span>`;
-    container.className = "";
+
+
+    
+    container.innerText = `Next: ${next.name} at ${next.timeStr} — in ${hours}h ${minutes}m ${seconds}s`;
   }
 
   updateClock();
-  updateNextPrayer();
+  updatePrayerTable();
+  updateCountdown();
   setInterval(() => {
     updateClock();
-    updateNextPrayer();
+    updateCountdown();
   }, 1000);
 });
+
+
 
 const backToTopBtn = document.getElementById("backToTop");
 
