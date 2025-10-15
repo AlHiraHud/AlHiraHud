@@ -4,6 +4,10 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  
+
+  
   const prayerSchedule = [
     { date: "2025-10-12", times: { Fajr: "05:32", Sunrise: "07:24", Dhuhr: "12:54", Asr: "16:23", Maghrib: "18:20", Isha: "20:14" } },
     { date: "2025-10-13", times: { Fajr: "05:34", Sunrise: "07:26", Dhuhr: "12:53", Asr: "16:21", Maghrib: "18:18", Isha: "20:11" } },
@@ -25,6 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
     { date: "2025-10-29", times: { Fajr: "05:03", Sunrise: "06:56", Dhuhr: "11:51", Asr: "14:48", Maghrib: "16:43", Isha: "18:38" } },
     { date: "2025-10-30", times: { Fajr: "05:04", Sunrise: "06:58", Dhuhr: "11:51", Asr: "14:47", Maghrib: "16:41", Isha: "18:36" } },
     { date: "2025-10-31", times: { Fajr: "05:06", Sunrise: "07:00", Dhuhr: "11:51", Asr: "14:45", Maghrib: "16:39", Isha: "18:35" } }
+
+
+
   ];
 
   function updateClock() {
