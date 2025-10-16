@@ -5,10 +5,6 @@ if (Notification.permission !== "granted") {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-
-  
-
-  
   const prayerSchedule = [
     { date: "2025-10-12", times: { Fajr: "05:32", Sunrise: "07:24", Dhuhr: "12:54", Asr: "16:23", Maghrib: "18:20", Isha: "20:14" } },
     { date: "2025-10-13", times: { Fajr: "05:34", Sunrise: "07:26", Dhuhr: "12:53", Asr: "16:21", Maghrib: "18:18", Isha: "20:11" } },
@@ -30,9 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { date: "2025-10-29", times: { Fajr: "05:03", Sunrise: "06:56", Dhuhr: "11:51", Asr: "14:48", Maghrib: "16:43", Isha: "18:38" } },
     { date: "2025-10-30", times: { Fajr: "05:04", Sunrise: "06:58", Dhuhr: "11:51", Asr: "14:47", Maghrib: "16:41", Isha: "18:36" } },
     { date: "2025-10-31", times: { Fajr: "05:06", Sunrise: "07:00", Dhuhr: "11:51", Asr: "14:45", Maghrib: "16:39", Isha: "18:35" } }
-
-
-
   ];
 
   function updateClock() {
@@ -43,69 +36,40 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("current-time").innerText = `Current Time: ${hh}:${mm}:${ss}`;
   }
 
-  function updatePrayerTable() {
-    const today = new Date().toISOString().split("T")[0];
-    const todaySchedule = prayerSchedule.find(entry => entry.date === today);
-    if (!todaySchedule) return;
-
-    const prayers = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
-    for (const name of prayers) {
-      const cell = document.querySelector(`td[data-prayer="${name}"]`);
-      if (cell) {
-        cell.innerText = todaySchedule.times[name] || "—";
-      }
-    }
-  }
-
   function getNextPrayer() {
     const now = new Date();
-    const today = new Date().toISOString().split("T")[0];
-    const todaySchedule = prayerSchedule.find(entry => entry.date === today);
-    if (!todaySchedule) return null;
-
     const order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
-    for (const name of order) {
-      const timeStr = todaySchedule.times[name];
-      if (!timeStr) continue;
-      const [hh, mm] = timeStr.split(":").map(Number);
-      const prayerTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hh, mm);
-      if (prayerTime > now) {
-        return { name, timeStr, timeObj: prayerTime };
-      }
-    }
-    return null;
+
+    const sorted = prayerSchedule
+      .map(entry => {
+        const dayStart = new Date(entry.date);
+        return order.map(name => {
+          const t = entry.times[name];
+          if (!t) return null;
+          const [hh, mm] = t.split(":").map(Number);
+          const timeObj = new Date(dayStart.getFullYear(), dayStart.getMonth(), dayStart.getDate(), hh, mm);
+          return { name, timeStr: t, timeObj, date: entry.date };
+        }).filter(Boolean);
+      })
+      .flat()
+      .filter(p => p.timeObj > now);
+
+    return sorted.length ? sorted[0] : null;
   }
 
-  function updateCountdown() {
+  function updateNextPrayer() {
     const container = document.getElementById("next-prayer");
     const next = getNextPrayer();
+
     if (!next) {
-      container.innerText = "No upcoming prayer today.";
+      container.innerHTML = `
+        🕌 All scheduled prayers have passed.<br>
+        <span style="font-size: 0.9em; color: #666;">
+          You may still offer extra prayers or reflect quietly.
+        </span>`;
+      container.className = "";
       return;
     }
-
- function getNextPrayer() {
-  const now = new Date();
-  const order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
-
-  const sorted = prayerSchedule
-    .map(entry => {
-      const dayStart = new Date(entry.date);
-      return order.map(name => {
-        const t = entry.times[name];
-        if (!t) return null;
-        const [hh, mm] = t.split(":").map(Number);
-        const timeObj = new Date(dayStart.getFullYear(), dayStart.getMonth(), dayStart.getDate(), hh, mm);
-        return { name, timeStr: t, timeObj, date: entry.date };
-      }).filter(Boolean);
-    })
-    .flat()
-    .filter(p => p.timeObj > now);
-
-  return sorted.length ? sorted[0] : null;
-}
-
-
 
     const now = new Date();
     const diff = Math.max(0, next.timeObj - now);
@@ -114,17 +78,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const minutes = Math.floor((totalSec % 3600) / 60);
     const seconds = totalSec % 60;
 
+    const dateObj = new Date(next.date);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = dateObj.toLocaleDateString('en-GB', options);
 
-    
-    container.innerText = `Next: ${next.name} at ${next.timeStr} — in ${hours}h ${minutes}m ${seconds}s`;
+    container.innerHTML = `
+      <strong>Next: ${next.name}</strong> at ${next.timeStr}<br>
+      <span style="font-size: 0.9em; color: #666;">Date: ${formattedDate}</span><br>
+      <strong>Countdown:</strong> ${hours}h ${minutes}m ${seconds}s
+    `;
+    container.className = "";
   }
 
   updateClock();
-  updatePrayerTable();
-  updateCountdown();
+  updateNextPrayer();
   setInterval(() => {
     updateClock();
-    updateCountdown();
+    updateNextPrayer();
   }, 1000);
 });
 
