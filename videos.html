@@ -47,21 +47,6 @@
 
 
 
-<script>
-  const iframe = document.getElementById('liveFrame');
-  const status = document.getElementById('liveStatus');
-
-  iframe.onload = () => {
-    // If the stream loads, hide the status message
-    status.style.display = 'none';
-  };
-
-  iframe.onerror = () => {
-    // If the stream fails to load, show a gentle message
-    iframe.style.display = 'none';
-    status.textContent = 'We are currently offline. Please check back soon, insha’Allah.';
-  };
-</script>
 
 
 
