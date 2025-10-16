@@ -28,7 +28,7 @@
 </div>
 
     <h1>Welcome to the Al-Hira Education Centre</h1>
-    <p>A space of presence, prayer, and peace</p>
+    <p>A space of presence, prayer and peace</p>
 
 
     
@@ -45,22 +45,29 @@
 <h2>Echos of Faith</h2> 
 
 
-<section class="livestream-wrapper">
-  <h2>📺 Live from Al-Hira Education Centre.</h2>
-  <p id="liveStatus">The stream will appear here when we go live, insha’Allah.</p>
-  <iframe width="100%" height="500"
-    src="https://www.youtube.com/embed/live_stream?channel=UCZK3bZ7eJvU1ZzqkKZ2ZJ9gA"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
-</section>
+
+
+<script>
+  const iframe = document.getElementById('liveFrame');
+  const status = document.getElementById('liveStatus');
+
+  iframe.onload = () => {
+    // If the stream loads, hide the status message
+    status.style.display = 'none';
+  };
+
+  iframe.onerror = () => {
+    // If the stream fails to load, show a gentle message
+    iframe.style.display = 'none';
+    status.textContent = 'We are currently offline. Please check back soon, insha’Allah.';
+  };
+</script>
 
 
 
 
 <div class="video-section">
-  <h2>📺 Latest Video</h2>
+  <h2>📺 Latest Video/Stream</h2>
   <div id="video-title" class="video-title"></div>
   <div id="latest-video" class="video-wrapper"></div>
 </div>

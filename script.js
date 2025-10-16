@@ -1,5 +1,6 @@
-
-
+if (Notification.permission !== "granted") {
+  Notification.requestPermission();
+}
 // Write the time in the emty "" alsoooo it has to be written in 24 hour format
 
 
@@ -122,8 +123,39 @@ document.addEventListener("DOMContentLoaded", () => {
   updatePrayerTable();
   updateCountdown();
   setInterval(() => {
+    function checkPrayerNotification() {
+  const now = new Date();
+  const today = new Date().toISOString().split("T")[0];
+  const todaySchedule = prayerSchedule.find(entry => entry.date === today);
+  if (!todaySchedule) return;
+
+  const prayers = Object.entries(todaySchedule.times);
+  for (const [name, timeStr] of prayers) {
+    const [hh, mm] = timeStr.split(":").map(Number);
+    const prayerTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hh, mm);
+
+    // Trigger notification if current time matches prayer time exactly
+    if (
+      now.getHours() === prayerTime.getHours() &&
+      now.getMinutes() === prayerTime.getMinutes() &&
+      now.getSeconds() === 0
+    ) {
+      sendPrayerNotification(name, timeStr);
+    }
+  }
+}
+
+function sendPrayerNotification(name, timeStr) {
+  if (Notification.permission === "granted") {
+    new Notification(`🕌 ${name} time`, {
+      body: `It's time for ${name} prayer (${timeStr}).`,
+      icon: "/path-to-your-icon.png" // optional
+    });
+  }
+}
     updateClock();
     updateCountdown();
+      checkPrayerNotification();
   }, 1000);
 });
 
