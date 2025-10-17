@@ -1,5 +1,6 @@
 
 
+
  document.addEventListener("DOMContentLoaded", () => {
   const prayerSchedule = [   
     { date: "2025-10-12", times: { Fajr: "05:32", Sunrise: "07:24", Dhuhr: "12:54", Asr: "16:23", Maghrib: "18:20", Isha: "20:14" } },
@@ -24,26 +25,72 @@
     { date: "2025-10-31", times: { Fajr: "05:06", Sunrise: "07:00", Dhuhr: "11:51", Asr: "14:45", Maghrib: "16:39", Isha: "18:35" } }
   ];
 
-  function updatePrayerTable() {
-    const today = new Date().toISOString().split("T")[0];
-    const todaySchedule = prayerSchedule.find(entry => entry.date === today);
-    const tableDate = document.getElementById("table-date");
+function updatePrayerTable() {
+  const today = new Date().toISOString().split("T")[0];
+  const todaySchedule = prayerSchedule.find(entry => entry.date === today);
+  const tableDate = document.getElementById("table-date");
 
-    if (!todaySchedule) {
-      tableDate.innerText = "No schedule found for today.";
-      return;
-    }
-
-    const dateObj = new Date(todaySchedule.date);
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = dateObj.toLocaleDateString('en-GB', options);
-    tableDate.innerText = `Today is ${formattedDate}`;
-
-    Object.entries(todaySchedule.times).forEach(([name, time]) => {
-      const cell = document.querySelector(`[data-prayer="${name}"]`);
-      if (cell) cell.innerText = time;
-    });
+  if (!todaySchedule) {
+    tableDate.innerText = "No schedule found for today.";
+    return;
   }
+
+  const dateObj = new Date(todaySchedule.date);
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = dateObj.toLocaleDateString('en-GB', options);
+  tableDate.innerText = `Today is ${formattedDate}`;
+
+  // Update prayer times
+  Object.entries(todaySchedule.times).forEach(([name, time]) => {
+    const cell = document.querySelector(`[data-prayer="${name}"]`);
+    if (cell) cell.innerText = time;
+  });
+
+  // Clear previous row states
+  document.querySelectorAll("td[data-prayer]").forEach(cell => {
+    const row = cell.parentElement;
+    row.classList.remove("past-prayer", "current-prayer", "next-prayer");
+  });
+
+  // Determine current and next prayer
+  const now = new Date();
+  const order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
+  let current = null;
+  let next = null;
+
+  for (let i = 0; i < order.length; i++) {
+    const timeStr = todaySchedule.times[order[i]];
+    const [hh, mm] = timeStr.split(":").map(Number);
+    const prayerTime = new Date();
+    prayerTime.setHours(hh, mm, 0, 0);
+
+    if (now >= prayerTime) {
+      current = order[i];
+    } else if (!next) {
+      next = order[i];
+    }
+  }
+
+  // Apply visual classes to rows
+  order.forEach(name => {
+    const cell = document.querySelector(`[data-prayer="${name}"]`);
+    if (!cell) return;
+    const row = cell.parentElement;
+
+    if (name === current) {
+      row.classList.add("current-prayer");
+    } else if (name === next) {
+      row.classList.add("next-prayer");
+    } else {
+      const [hh, mm] = todaySchedule.times[name].split(":").map(Number);
+      const prayerTime = new Date();
+      prayerTime.setHours(hh, mm, 0, 0);
+      if (now > prayerTime) {
+        row.classList.add("past-prayer");
+      }
+    }
+  });
+}
 
   function updateClock() {
     const now = new Date();
@@ -102,7 +149,7 @@
 
     container.innerHTML = `
       <strong>Next Prayer ${next.name}</strong> at ${next.timeStr}<br>
-      <span style="font-size: 0.9em; color: #666;">On the ${formattedDate}</span><br>
+      <span style="font-size: 0.9em; color: #666;">On ${formattedDate}</span><br>
       <strong>Time Until:</strong> ${hours}h ${minutes}m ${seconds}s
     `;
     container.className = "";
@@ -166,3 +213,27 @@ if (isNight || rawdahMode) {
   const el = document.getElementById("table-date");
   if (el) el.innerText = `Prayer Begining Times For ${formatted}`;
 })();
+
+
+
+let tasbihCount = 0;
+let phrases = ["SubhanAllah", "Alhamdulillah", "Allahu Akbar"];
+let currentPhraseIndex = 0;
+
+function incrementTasbih() {
+  tasbihCount++;
+  document.getElementById("count").innerText = tasbihCount;
+
+  // Optional: cycle phrase every 33 counts
+  if (tasbihCount % 33 === 0) {
+    currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+    document.getElementById("phrase").innerText = phrases[currentPhraseIndex];
+  }
+}
+
+function resetTasbih() {
+  tasbihCount = 0;
+  currentPhraseIndex = 0;
+  document.getElementById("count").innerText = tasbihCount;
+  document.getElementById("phrase").innerText = phrases[currentPhraseIndex];
+}

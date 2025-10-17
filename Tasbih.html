@@ -20,6 +20,9 @@
 <!-- Toggle Button -->
 <button id="menu-toggle" aria-label="Toggle menu">☰</button>
 
+
+
+
 <!-- Sidebar Navigation -->
 <nav class="sidebar" id="sidebar">
   <ul>
@@ -42,47 +45,27 @@
   </header>
 
 
+<h2>Whispers of Light</h2>
 
-  <p class="special">Timetable as of October 2025.</p>
- <!-- HTML Element to Display Time -->
-<div id="current-time"></div>
-<div id="next-prayer"></div>
-
-
-
-
-
-
-<div style="margin-top: 40px;"></div>
+<div class="tasbih-container" style="margin-top: 40px;">
+  <h2>Tasbih Counter</h2>
+  <div id="count">0</div>
+  <button onclick="incrementTasbih()">Count</button>
+  <button onclick="resetTasbih()">Reset</button>
+</div>
 
 
 
-
-
-
-<h2 id="prayer-title">🕌Daily Prayer Begining Times🕌</h2>
-<p id="table-date" style="font-weight: bold; margin-bottom: 10px;"></p>
-
-<table>
-  <tr><th>Prayer</th><th>Time</th></tr>
-  <tr><td>Fajr</td><td data-prayer="Fajr">No Data</td></tr>
-  <tr><td>Sunrise</td><td data-prayer="Sunrise">No Data</td></tr>
-  <tr><td>Dhuhr</td><td data-prayer="Dhuhr">No Data</td></tr>
-  <tr><td>Asr</td><td data-prayer="Asr">No Data</td></tr>
-  <tr><td>Maghrib</td><td data-prayer="Maghrib">No Data</td></tr>
-  <tr><td>Isha</td><td data-prayer="Isha">No Data</td></tr>
-</table>
-
-<div id="next-prayer" style="
-  background-color: #f9f9f9;
-  padding: 12px;
-  border-radius: 8px;
-  box-shadow: 0 0 6px rgba(0,0,0,0.05);
-  line-height: 1.6;
-  margin-top: 20px;
-"></div>
-
-
+<div class="pdf-section">
+  <h2>Surah Al-Mulk (PDF)</h2>
+  <iframe 
+    src="Surah Al Mulk.pdf" 
+    width="100%" 
+    height="600px" 
+    style="border: none;">
+  </iframe>
+</div>
+  
 <div class="social-links">
   <a href="https://www.facebook.com/SuffahFoundation/" target="_blank" aria-label="Facebook">
     <img src="facebook.png" alt="Facebook">

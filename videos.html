@@ -21,6 +21,7 @@
     <li><a href="index.html">🏠 Home</a></li>
     <li><a href="videos.html">🎥 Videos</a></li>
     <li><a href="prayer.html">🕌 Prayer Times</a></li>
+    <li><a href="Tasbih.html">📿 Tasbih</a></li>
     <li><a href="about.html">📖 About</a></li>
   </ul>
 </nav>
@@ -43,8 +44,8 @@
   </header>
 
 
- <!-- HTML Element to Display Time -->
-<div id="current-time"></div>
+
+
 
 <h2>Echos of Faith</h2> 
 
@@ -58,7 +59,7 @@
 </div>
 
 <script>
-  const channelId = 'UCRTm9vAELz-tC4zpDj-GiYw'; // Replace with actual channel ID
+  const channelId = 'UCRTm9vAELz-tC4zpDj-GiYw';
   const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
   const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
@@ -67,16 +68,29 @@
     .then(data => {
       if (data.items && data.items.length > 0) {
         const video = data.items[0];
-        const videoId = video.link.split('=')[1];
+        let videoId = null;
 
-        // Set title
-        document.getElementById('video-title').innerText = video.title;
+        if (video.link.includes("watch?v=")) {
+          videoId = video.link.split("v=")[1];
+        } else if (video.link.includes("/shorts/")) {
+          videoId = video.link.split("/shorts/")[1];
+        }
 
-        // Embed video
-        const iframe = `
-          <iframe src="https://www.youtube.com/embed/${videoId}"
-            frameborder="0" allowfullscreen></iframe>`;
-        document.getElementById('latest-video').innerHTML = iframe;
+        if (videoId) {
+          const isShort = video.link.includes("/shorts/");
+          const width = isShort ? 315 : 560;
+          const height = isShort ? 560 : 315;
+
+          document.getElementById('video-title').innerText = video.title;
+
+          const iframe = `
+            <iframe width="${width}" height="${height}"
+              src="https://www.youtube.com/embed/${videoId}"
+              frameborder="0" allowfullscreen></iframe>`;
+          document.getElementById('latest-video').innerHTML = iframe;
+        } else {
+          document.getElementById('latest-video').innerHTML = '<p>Unable to load video.</p>';
+        }
       } else {
         document.getElementById('latest-video').innerHTML = '<p>No videos found.</p>';
       }
