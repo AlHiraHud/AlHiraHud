@@ -12,14 +12,18 @@
 <body>
 
 
-<nav class="top-nav">
+<!-- Toggle Button -->
+<button id="menu-toggle" aria-label="Toggle menu">☰</button>
+
+<!-- Sidebar Navigation -->
+<nav class="sidebar" id="sidebar">
   <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="videos.html">Videos</a></li>
-    <li><a href="prayer.html">Prayer Times</a></li>
-    <li><a href="about.html">About</a></li>
+    <li><a href="index.html">🏠 Home</a></li>
+    <li><a href="videos.html">🎥 Videos</a></li>
+    <li><a href="prayer.html">🕌 Prayer Times</a></li>
+    <li><a href="about.html">📖 About</a></li>
   </ul>
-</nav>  <header>
+</nav>
 
 
 <div class="header-row">
@@ -28,7 +32,7 @@
 </div>
 
     <h1>Welcome to the Al-Hira Education Centre</h1>
-    <p>A space of presence, prayer, and peace</p>
+    <p>A space of presence, prayer and peace</p>
   </header>
 
 
@@ -44,9 +48,9 @@
 
   <p>We try to create content that feels like a companion on your journey. Whether it’s a <em>naat</em> that moves you, a lecture that brings clarity, or a quiet reflection that stays with you. We want every piece to carry meaning, mercy, and presence.</p>
 
-  <p>Our hope is that what we share doesn’t just inform, but uplifts. Helping you feel more connected, more grounded, and more in tune with the beauty of Islam.</p>
+  <p>Our hope is that what we share doesn’t just inform, but uplifts. Helping you feel more connected, more grounded and more in tune with the beauty of Islam.</p>
 
-  <p>This mission is personal. It’s about nurturing peace, unity, and devotion in a way that feels gentle and real. We want to help people live with intention, walk with love, and follow the blessed example of the Prophet ﷺ, not just in moments of worship, but in everyday life.</p>
+  <p>This mission is personal. It’s about nurturing peace, unity and devotion in a way that feels gentle and real. We want to help people live with intention, walk with love and follow the blessed example of the Prophet ﷺ, not just in moments of worship, but in everyday life.</p>
 </section>
 
 
@@ -99,6 +103,17 @@
 </div>
 
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
+
+    toggleBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+      document.body.classList.toggle("sidebar-open");
+    });
+  });
+</script>
 
 
 

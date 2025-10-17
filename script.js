@@ -1,11 +1,7 @@
-if (Notification.permission !== "granted") {
-  Notification.requestPermission();
-}
-// Write the time in the emty "" alsoooo it has to be written in 24 hour format
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  const prayerSchedule = [
+ document.addEventListener("DOMContentLoaded", () => {
+  const prayerSchedule = [   
     { date: "2025-10-12", times: { Fajr: "05:32", Sunrise: "07:24", Dhuhr: "12:54", Asr: "16:23", Maghrib: "18:20", Isha: "20:14" } },
     { date: "2025-10-13", times: { Fajr: "05:34", Sunrise: "07:26", Dhuhr: "12:53", Asr: "16:21", Maghrib: "18:18", Isha: "20:11" } },
     { date: "2025-10-14", times: { Fajr: "05:36", Sunrise: "07:28", Dhuhr: "12:53", Asr: "16:18", Maghrib: "18:15", Isha: "20:09" } },
@@ -28,12 +24,34 @@ document.addEventListener("DOMContentLoaded", () => {
     { date: "2025-10-31", times: { Fajr: "05:06", Sunrise: "07:00", Dhuhr: "11:51", Asr: "14:45", Maghrib: "16:39", Isha: "18:35" } }
   ];
 
+  function updatePrayerTable() {
+    const today = new Date().toISOString().split("T")[0];
+    const todaySchedule = prayerSchedule.find(entry => entry.date === today);
+    const tableDate = document.getElementById("table-date");
+
+    if (!todaySchedule) {
+      tableDate.innerText = "No schedule found for today.";
+      return;
+    }
+
+    const dateObj = new Date(todaySchedule.date);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = dateObj.toLocaleDateString('en-GB', options);
+    tableDate.innerText = `Today is ${formattedDate}`;
+
+    Object.entries(todaySchedule.times).forEach(([name, time]) => {
+      const cell = document.querySelector(`[data-prayer="${name}"]`);
+      if (cell) cell.innerText = time;
+    });
+  }
+
   function updateClock() {
     const now = new Date();
     const hh = String(now.getHours()).padStart(2, "0");
     const mm = String(now.getMinutes()).padStart(2, "0");
     const ss = String(now.getSeconds()).padStart(2, "0");
-    document.getElementById("current-time").innerText = `Current Time: ${hh}:${mm}:${ss}`;
+    const clock = document.getElementById("current-time");
+    if (clock) clock.innerText = `Current Time: ${hh}:${mm}:${ss}`;
   }
 
   function getNextPrayer() {
@@ -83,21 +101,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const formattedDate = dateObj.toLocaleDateString('en-GB', options);
 
     container.innerHTML = `
-      <strong>Next: ${next.name}</strong> at ${next.timeStr}<br>
-      <span style="font-size: 0.9em; color: #666;">Date: ${formattedDate}</span><br>
-      <strong>Countdown:</strong> ${hours}h ${minutes}m ${seconds}s
+      <strong>Next Prayer ${next.name}</strong> at ${next.timeStr}<br>
+      <span style="font-size: 0.9em; color: #666;">On the ${formattedDate}</span><br>
+      <strong>Time Until:</strong> ${hours}h ${minutes}m ${seconds}s
     `;
     container.className = "";
   }
 
+  // Initial run
   updateClock();
+  updatePrayerTable();
   updateNextPrayer();
+
+  // Keep updating every second
   setInterval(() => {
     updateClock();
+    updatePrayerTable();
     updateNextPrayer();
   }, 1000);
 });
-
 
 
 const backToTopBtn = document.getElementById("backToTop");
@@ -144,4 +166,3 @@ if (isNight || rawdahMode) {
   const el = document.getElementById("table-date");
   if (el) el.innerText = `Prayer Begining Times For ${formatted}`;
 })();
-

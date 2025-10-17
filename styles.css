@@ -60,35 +60,68 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-
-.top-nav {
-  background-color: #fffdd0;
-  padding: 10px 0;
-  position: sticky;
+/* Sidebar base */
+.sidebar {
+  position: fixed;
   top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  left: -200px; /* hidden by default */
+  width: 200px;
+  height: 100vh;
+  background-color: #ffd793;
+  border-right: 1px solid #ffa348;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+  padding-top: 60px;
+  transition: left 0.3s ease;
+  z-index: 1000;
 }
 
-.top-nav ul {
+.sidebar ul {
   list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
-.top-nav ul li a {
-  text-decoration: none;
-  font-weight: bold;
+.sidebar li {
+  margin-bottom: 15px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px 20px;
   color: #333;
-  font-size: 1.1rem;
-  transition: color 0.3s ease;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: background 0.3s;
 }
 
-.top-nav ul li a:hover {
-  color: #007b5e;
+.sidebar a:hover {
+  background-color: #f9cf7c;
+}
+
+/* Toggle button */
+#menu-toggle {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1100;
+  background: #ffebce;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* When sidebar is open */
+.sidebar.open {
+  left: 0;
+}
+
+/* Push content if needed */
+body.sidebar-open {
+  margin-left: 200px;
+  transition: margin-left 0.3s ease;
 }
 
 body {
@@ -552,11 +585,19 @@ img {
 
 
 
-
 h2 {
   margin-top: 30px; /* Adjust as needed */
 }
 
+
+
+h2 {
+  margin-bottom: 0.5rem; /* Reduce space below headings */
+}
+
+.video-section {
+  margin-top: 0.5rem; /* Reduce space above the video section */
+}
 
 
 body {

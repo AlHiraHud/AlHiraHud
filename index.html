@@ -10,18 +10,23 @@
 
 
 
+</div>
 
 <body>
 
 
-<nav class="top-nav">
+<!-- Toggle Button -->
+<button id="menu-toggle" aria-label="Toggle menu">☰</button>
+
+<!-- Sidebar Navigation -->
+<nav class="sidebar" id="sidebar">
   <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="videos.html">Videos</a></li>
-    <li><a href="prayer.html">Prayer Times</a></li>
-    <li><a href="about.html">About</a></li>
+    <li><a href="index.html">🏠 Home</a></li>
+    <li><a href="videos.html">🎥 Videos</a></li>
+    <li><a href="prayer.html">🕌 Prayer Times</a></li>
+    <li><a href="about.html">📖 About</a></li>
   </ul>
-</nav>  <header>
+</nav>
 
 
 <div class="header-row">
@@ -48,9 +53,13 @@
 <div style="margin-top: 40px;"></div>
 
 
+
+
+
+
 <h2 id="prayer-title">🕌Daily Prayer Begining Times🕌</h2>
-<p id="prayer-date" style="margin-bottom: 10px; font-weight: bold;"></p>
 <p id="table-date" style="font-weight: bold; margin-bottom: 10px;"></p>
+
 <table>
   <tr><th>Prayer</th><th>Time</th></tr>
   <tr><td>Fajr</td><td data-prayer="Fajr">No Data</td></tr>
@@ -61,6 +70,14 @@
   <tr><td>Isha</td><td data-prayer="Isha">No Data</td></tr>
 </table>
 
+<div id="next-prayer" style="
+  background-color: #f9f9f9;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.05);
+  line-height: 1.6;
+  margin-top: 20px;
+"></div>
 
 
 <div class="social-links">
@@ -107,7 +124,17 @@
 </div>
 
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.getElementById("menu-toggle");
+    const sidebar = document.getElementById("sidebar");
 
+    toggleBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+      document.body.classList.toggle("sidebar-open");
+    });
+  });
+</script>
 
 
 
