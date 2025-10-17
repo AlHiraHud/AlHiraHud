@@ -56,15 +56,31 @@
 
 
 
+<!-- 📖 Surah Al-Mulk PDF Section -->
 <div class="pdf-section">
-  <h2>Surah Al-Mulk (PDF)</h2>
-  <iframe 
-    src="Surah Al Mulk.pdf" 
-    width="100%" 
-    height="600px" 
-    style="border: none;">
-  </iframe>
+  <h2>Whispers of Light</h2>
+  <div id="pdf-container">
+    <iframe 
+      src="Surah Al Mulk.pdf" 
+      width="100%" 
+      height="600px" 
+      style="border: none;">
+    </iframe>
+  </div>
 </div>
+
+<script>
+  // Detect mobile devices including iPhone, iPad, Android
+  if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    document.getElementById("pdf-container").innerHTML = `
+      <p style="text-align:center; font-size: 1.1em;">
+        📖 <a href="Surah Al Mulk.pdf" target="_blank" rel="noopener" style="text-decoration: none; color: #2c3e50;">
+          Tap to view Surah Al-Mulk (Full PDF)
+        </a>
+      </p>
+    `;
+  }
+</script>
   
 <div class="social-links">
   <a href="https://www.facebook.com/SuffahFoundation/" target="_blank" aria-label="Facebook">
