@@ -706,6 +706,20 @@ button:hover {
   animation: fadeInSlide 1s ease-out;
 }
 
+
+.announcement-list {
+  padding: 1em;
+}
+
+.announcement {
+  background: #f9f9f9;
+  border-left: 4px solid #2c3e50;
+  margin-bottom: 1em;
+  padding: 1em;
+  border-radius: 6px;
+}
+
+
 body {
   padding-bottom: 100px; /* Adjust the value as needed */
 }
