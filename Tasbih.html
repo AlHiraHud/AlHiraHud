@@ -29,9 +29,9 @@
       <li><a href="index.html">🏠 Home</a></li>
       <li><a href="videos.html">🎥 Videos</a></li>
       <li><a href="prayer.html">🕌 Prayer Times</a></li>
-      <li><a href="Tasbih.html">📿 Tasbih</a></li>
-      <li><a href="about.html">📖 About</a></li>
+      <li><a href="Tasbih.html">📿 Tasbih and Surahs</a></li>
       <li><a href="announcements.html" class="active">📢 Announcements</a></li>
+      <li><a href="about.html">📖 About</a></li>
   </ul>
 </nav>
 
@@ -56,13 +56,25 @@
 </div>
 
 
-
 <!-- 📖 Surah Al-Mulk PDF Section -->
 <div class="pdf-section">
-  <h2>Surah Al - Al-Mulk</h2>
-  <div id="pdf-container">
+  <h2>Surah Al-Mulk</h2>
+  <div id="pdf-mulk">
     <iframe 
       src="Surah Al Mulk.pdf" 
+      width="100%" 
+      height="600px" 
+      style="border: none;">
+    </iframe>
+  </div>
+</div>
+
+<!-- 📖 Surah Yaseen PDF Section -->
+<div class="pdf-section">
+  <h2>Surah Yaseen</h2>
+  <div id="pdf-yaseen">
+    <iframe 
+      src="Surah Yaseen.pdf" 
       width="100%" 
       height="600px" 
       style="border: none;">
@@ -73,10 +85,17 @@
 <script>
   // Detect mobile devices including iPhone, iPad, Android
   if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    document.getElementById("pdf-container").innerHTML = `
+    document.getElementById("pdf-mulk").innerHTML = `
       <p style="text-align:center; font-size: 1.1em;">
         📖 <a href="Surah Al Mulk.pdf" target="_blank" rel="noopener" style="text-decoration: none; color: #2c3e50;">
           Tap to view Surah Al-Mulk (Full PDF)
+        </a>
+      </p>
+    `;
+    document.getElementById("pdf-yaseen").innerHTML = `
+      <p style="text-align:center; font-size: 1.1em;">
+        📖 <a href="Surah Yaseen.pdf" target="_blank" rel="noopener" style="text-decoration: none; color: #2c3e50;">
+          Tap to view Surah Yaseen (Full PDF)
         </a>
       </p>
     `;
@@ -121,11 +140,9 @@
 
 <div class="tv-bar">
   <div class="badge">Notices</div>
-  <marquee direction="left" scrollamount="3" behavior="scroll">
-     Donate Now:   Al Hira Educational Centre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Sort Code: 30-64-10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account: 34642160 &nbsp;&nbsp;&nbsp;&nbsp; (May Allah Reward You For Donation Ameen) &nbsp;&nbsp;&nbsp;&nbsp;  🌙 Announcements:   🕊️ “Prayer times updated for October 2025.”  &nbsp;&nbsp;Jumma Time 14:00&nbsp;&nbsp;(Back To Basics Weekly Islamic Study Class) Every Thursday at 19:00. 🕋   
-  </marquee>
+  <marquee direction="left" scrollamount="5" behavior="scroll">
+     Donate Now:   Al Hira Educational Centre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Sort Code: 30-64-10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account: 34642160 &nbsp;&nbsp;&nbsp;&nbsp; (May Allah Reward You For Donation Ameen) 
 </div>
-
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {

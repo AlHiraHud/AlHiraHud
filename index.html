@@ -26,9 +26,9 @@
       <li><a href="index.html">🏠 Home</a></li>
       <li><a href="videos.html">🎥 Videos</a></li>
       <li><a href="prayer.html">🕌 Prayer Times</a></li>
-      <li><a href="Tasbih.html">📿 Tasbih</a></li>
-      <li><a href="about.html">📖 About</a></li>
+      <li><a href="Tasbih.html">📿 Tasbih and Surahs</a></li>
       <li><a href="announcements.html" class="active">📢 Announcements</a></li>
+      <li><a href="about.html">📖 About</a></li>
   </ul>
 </nav>
 
@@ -122,7 +122,7 @@
 
 <div class="tv-bar">
   <div class="badge">Notices</div>
-  <marquee direction="left" scrollamount="3" behavior="scroll">
+  <marquee direction="left" scrollamount="5" behavior="scroll">
      Donate Now:   Al Hira Educational Centre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Sort Code: 30-64-10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account: 34642160 &nbsp;&nbsp;&nbsp;&nbsp; (May Allah Reward You For Donation Ameen) 
 </div>
 
@@ -142,6 +142,17 @@
 
 
   <script src="script.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').then(reg => {
+        console.log('✅ Service Worker registered');
+      }).catch(err => {
+        console.log('❌ Service Worker registration failed:', err);
+      });
+    });
+  }
+</script>
 
 </body>
 </html>
