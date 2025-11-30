@@ -50,9 +50,9 @@
     .then(response => response.json())
     .then(data => {
       if (data.items && data.items.length > 0) {
-        // Get the latest 5 videos
-        const videos = data.items.slice(0, 5);
-        let output = '';
+        const videos = data.items.slice(0, 5); // latest 5
+        const container = document.getElementById('latest-videos');
+        container.innerHTML = ''; // clear any old content
 
         videos.forEach(video => {
           let videoId = null;
@@ -68,18 +68,21 @@
             const width = isShort ? 315 : 560;
             const height = isShort ? 560 : 315;
 
-            output += `
-              <div class="video-block" style="margin-bottom: 1em;">
-                <h3 style="font-size:16px; margin-bottom:0.5em;">${video.title}</h3>
-                <iframe width="${width}" height="${height}"
-                  src="https://www.youtube.com/embed/${videoId}"
-                  frameborder="0" allowfullscreen></iframe>
-              </div>
+            // create a box for each video
+            const videoBox = document.createElement('div');
+            videoBox.className = 'video-block';
+            videoBox.style.marginBottom = '1.5em';
+
+            videoBox.innerHTML = `
+              <h3 style="font-size:16px; margin-bottom:0.5em;">${video.title}</h3>
+              <iframe width="${width}" height="${height}"
+                src="https://www.youtube.com/embed/${videoId}"
+                frameborder="0" allowfullscreen></iframe>
             `;
+
+            container.appendChild(videoBox);
           }
         });
-
-        document.getElementById('latest-videos').innerHTML = output;
       } else {
         document.getElementById('latest-videos').innerHTML = '<p>No videos found.</p>';
       }
