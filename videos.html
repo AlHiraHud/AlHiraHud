@@ -36,72 +36,19 @@
 
 
 
+
+<h2>📺 Latest Video/Stream</h2><div id="video-title" class="video-title"></div><div id="latest-video" class="video-wrapper"></div></div>
+<script>const channelId = 'UCRTm9vAELz-tC4zpDj-GiYw';const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;fetch(apiUrl).then(response => response.json()).then(data => {if (data.items && data.items.length > 0) {const video = data.items[0];let videoId = null;if (video.link.includes("watch?v=")) {videoId = video.link.split("v=")[1];} else if (video.link.includes("/shorts/")) {videoId = video.link.split("/shorts/")[1];}if (videoId) {const isShort = video.link.includes("/shorts/");const width = isShort ? 315 : 560;const height = isShort ? 560 : 315;document.getElementById('video-title').innerText = video.title;const iframe = `<iframe width="${width}" height="${height}"src="https://www.youtube.com/embed/${videoId}"frameborder="0" allowfullscreen></iframe>`;document.getElementById('latest-video').innerHTML = iframe;} else {document.getElementById('latest-video').innerHTML = '<p>Unable to load video.</p>';}} else {document.getElementById('latest-video').innerHTML = '<p>No videos found.</p>';}}).catch(error => {console.error('Error fetching video:', error);document.getElementById('latest-video').innerHTML = '<p>Unable to load video.</p>';});</script>
+
+
 <div class="video-section">
-  <h2>📺 Latest Videos/Streams</h2>
-  <div id="latest-videos" class="video-wrapper"></div>
-</div>
-
-<script>
-  const channelId = 'UCRTm9vAELz-tC4zpDj-GiYw';
-  const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-  const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-
-  fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      if (data.items && data.items.length > 0) {
-        const videos = data.items.slice(0, 5); // latest 5
-        const container = document.getElementById('latest-videos');
-        container.innerHTML = ''; // clear any old content
-
-        videos.forEach(video => {
-          let videoId = null;
-
-          if (video.link.includes("watch?v=")) {
-            videoId = video.link.split("v=")[1];
-          } else if (video.link.includes("/shorts/")) {
-            videoId = video.link.split("/shorts/")[1];
-          }
-
-          if (videoId) {
-            const isShort = video.link.includes("/shorts/");
-            const width = isShort ? 315 : 560;
-            const height = isShort ? 560 : 315;
-
-            // create a box for each video
-            const videoBox = document.createElement('div');
-            videoBox.className = 'video-block';
-            videoBox.style.marginBottom = '1.5em';
-
-            videoBox.innerHTML = `
-              <h3 style="font-size:16px; margin-bottom:0.5em;">${video.title}</h3>
-              <iframe width="${width}" height="${height}"
-                src="https://www.youtube.com/embed/${videoId}"
-                frameborder="0" allowfullscreen></iframe>
-            `;
-
-            container.appendChild(videoBox);
-          }
-        });
-      } else {
-        document.getElementById('latest-videos').innerHTML = '<p>No videos found.</p>';
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching videos:', error);
-      document.getElementById('latest-videos').innerHTML = '<p>Unable to load videos.</p>';
-    });
-</script>
-
-<div class="video-wrapper">
-  <iframe 
-    src="https://www.youtube.com/embed/x4Phgy4_FdE?si=31V6pKH86T09FLBB" 
-    title="YouTube video player" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
-    allowfullscreen>
-  </iframe>
+  <h2>📺 Watch More Videos</h2>
+  <p style="text-align:center; margin-top:1em;">
+    <a href="https://www.youtube.com/channel/UCRTm9vAELz-tC4zpDj-GiYw" target="_blank" 
+       style="color:#2c2c2c; font-weight:bold; text-decoration:none;">
+      👉 Tap Here To Visit our YouTube Channel.
+    </a>
+  </p>
 </div>
 
 <div class="social-links">
