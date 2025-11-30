@@ -28,24 +28,7 @@
 </nav>
 
 
-<div class="header-row">
-  <img src="al_hira_centre_logo.png" alt="Al-Hira Centre Huddersfield Logo" class="logo">
-  <div class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
-</div>
-
-    <h1>Welcome to the Al-Hira Education Centre</h1>
-    <p>A space of presence, prayer and peace</p>
-
-
-    
-     
-
-
-
   </header>
-
-
-
 
 
 <h2>Echos of Faith</h2> 
@@ -54,9 +37,8 @@
 
 
 <div class="video-section">
-  <h2>📺 Latest Video/Stream</h2>
-  <div id="video-title" class="video-title"></div>
-  <div id="latest-video" class="video-wrapper"></div>
+  <h2>📺 Latest Videos/Streams</h2>
+  <div id="latest-videos" class="video-wrapper"></div>
 </div>
 
 <script>
@@ -68,40 +50,45 @@
     .then(response => response.json())
     .then(data => {
       if (data.items && data.items.length > 0) {
-        const video = data.items[0];
-        let videoId = null;
+        // Get the latest 5 videos
+        const videos = data.items.slice(0, 5);
+        let output = '';
 
-        if (video.link.includes("watch?v=")) {
-          videoId = video.link.split("v=")[1];
-        } else if (video.link.includes("/shorts/")) {
-          videoId = video.link.split("/shorts/")[1];
-        }
+        videos.forEach(video => {
+          let videoId = null;
 
-        if (videoId) {
-          const isShort = video.link.includes("/shorts/");
-          const width = isShort ? 315 : 560;
-          const height = isShort ? 560 : 315;
+          if (video.link.includes("watch?v=")) {
+            videoId = video.link.split("v=")[1];
+          } else if (video.link.includes("/shorts/")) {
+            videoId = video.link.split("/shorts/")[1];
+          }
 
-          document.getElementById('video-title').innerText = video.title;
+          if (videoId) {
+            const isShort = video.link.includes("/shorts/");
+            const width = isShort ? 315 : 560;
+            const height = isShort ? 560 : 315;
 
-          const iframe = `
-            <iframe width="${width}" height="${height}"
-              src="https://www.youtube.com/embed/${videoId}"
-              frameborder="0" allowfullscreen></iframe>`;
-          document.getElementById('latest-video').innerHTML = iframe;
-        } else {
-          document.getElementById('latest-video').innerHTML = '<p>Unable to load video.</p>';
-        }
+            output += `
+              <div class="video-block" style="margin-bottom: 1em;">
+                <h3 style="font-size:16px; margin-bottom:0.5em;">${video.title}</h3>
+                <iframe width="${width}" height="${height}"
+                  src="https://www.youtube.com/embed/${videoId}"
+                  frameborder="0" allowfullscreen></iframe>
+              </div>
+            `;
+          }
+        });
+
+        document.getElementById('latest-videos').innerHTML = output;
       } else {
-        document.getElementById('latest-video').innerHTML = '<p>No videos found.</p>';
+        document.getElementById('latest-videos').innerHTML = '<p>No videos found.</p>';
       }
     })
     .catch(error => {
-      console.error('Error fetching video:', error);
-      document.getElementById('latest-video').innerHTML = '<p>Unable to load video.</p>';
+      console.error('Error fetching videos:', error);
+      document.getElementById('latest-videos').innerHTML = '<p>Unable to load videos.</p>';
     });
 </script>
-
 
 <div class="video-wrapper">
   <iframe 
@@ -133,7 +120,6 @@
 
   
 
-<p><strong>Powered by:</strong> HyperText Markup Language (HTML), JavaScript and Cascading Style Sheets (CSS) </p>
 
 
 
