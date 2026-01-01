@@ -4,37 +4,37 @@
  document.addEventListener("DOMContentLoaded", () => {
   const prayerSchedule = [   
   
-{ date: "2025-12-01", times: { Fajr: "05:52", Sunrise: "07:56", Dhuhr: "11:56", Asr: "14:04", Maghrib: "15:54", Isha: "18:00" } },
-{ date: "2025-12-02", times: { Fajr: "05:53", Sunrise: "07:58", Dhuhr: "11:57", Asr: "14:03", Maghrib: "15:53", Isha: "17:59" } },
-{ date: "2025-12-03", times: { Fajr: "05:55", Sunrise: "07:59", Dhuhr: "11:57", Asr: "14:03", Maghrib: "15:53", Isha: "17:59" } },
-{ date: "2025-12-04", times: { Fajr: "05:56", Sunrise: "08:00", Dhuhr: "11:57", Asr: "14:02", Maghrib: "15:52", Isha: "17:59" } },
-{ date: "2025-12-05", times: { Fajr: "05:57", Sunrise: "08:02", Dhuhr: "11:58", Asr: "14:02", Maghrib: "15:52", Isha: "17:58" } },
-{ date: "2025-12-06", times: { Fajr: "05:58", Sunrise: "08:03", Dhuhr: "11:58", Asr: "14:01", Maghrib: "15:51", Isha: "17:58" } },
-{ date: "2025-12-07", times: { Fajr: "05:59", Sunrise: "08:04", Dhuhr: "11:59", Asr: "14:01", Maghrib: "15:51", Isha: "17:58" } },
-{ date: "2025-12-08", times: { Fajr: "06:00", Sunrise: "08:06", Dhuhr: "11:59", Asr: "14:01", Maghrib: "15:50", Isha: "17:58" } },
-{ date: "2025-12-09", times: { Fajr: "06:01", Sunrise: "08:07", Dhuhr: "12:00", Asr: "14:00", Maghrib: "15:50", Isha: "17:58" } },
-{ date: "2025-12-10", times: { Fajr: "06:02", Sunrise: "08:08", Dhuhr: "12:00", Asr: "14:00", Maghrib: "15:50", Isha: "17:58" } },
-{ date: "2025-12-11", times: { Fajr: "06:03", Sunrise: "08:09", Dhuhr: "12:00", Asr: "14:00", Maghrib: "15:50", Isha: "17:58" } },
-{ date: "2025-12-12", times: { Fajr: "06:04", Sunrise: "08:10", Dhuhr: "12:01", Asr: "14:00", Maghrib: "15:50", Isha: "17:58" } },
-{ date: "2025-12-13", times: { Fajr: "06:05", Sunrise: "08:11", Dhuhr: "12:01", Asr: "14:00", Maghrib: "15:50", Isha: "17:58" } },
-{ date: "2025-12-14", times: { Fajr: "06:05", Sunrise: "08:12", Dhuhr: "12:02", Asr: "14:00", Maghrib: "15:50", Isha: "17:58" } },
-{ date: "2025-12-15", times: { Fajr: "06:06", Sunrise: "08:13", Dhuhr: "12:02", Asr: "14:00", Maghrib: "15:50", Isha: "17:58" } },
-{ date: "2025-12-16", times: { Fajr: "06:07", Sunrise: "08:14", Dhuhr: "12:03", Asr: "14:01", Maghrib: "15:50", Isha: "17:59" } },
-{ date: "2025-12-17", times: { Fajr: "06:08", Sunrise: "08:15", Dhuhr: "12:03", Asr: "14:01", Maghrib: "15:50", Isha: "17:59" } },
-{ date: "2025-12-18", times: { Fajr: "06:08", Sunrise: "08:15", Dhuhr: "12:04", Asr: "14:01", Maghrib: "15:50", Isha: "17:59" } },
-{ date: "2025-12-19", times: { Fajr: "06:09", Sunrise: "08:16", Dhuhr: "12:04", Asr: "14:01", Maghrib: "15:51", Isha: "18:00" } },
-{ date: "2025-12-20", times: { Fajr: "06:09", Sunrise: "08:17", Dhuhr: "12:05", Asr: "14:02", Maghrib: "15:51", Isha: "18:00" } },
-{ date: "2025-12-21", times: { Fajr: "06:10", Sunrise: "08:17", Dhuhr: "12:05", Asr: "14:02", Maghrib: "15:52", Isha: "18:01" } },
-{ date: "2025-12-22", times: { Fajr: "06:10", Sunrise: "08:18", Dhuhr: "12:06", Asr: "14:03", Maghrib: "15:52", Isha: "18:01" } },
-{ date: "2025-12-23", times: { Fajr: "06:11", Sunrise: "08:18", Dhuhr: "12:06", Asr: "14:03", Maghrib: "15:53", Isha: "18:02" } },
-{ date: "2025-12-24", times: { Fajr: "06:11", Sunrise: "08:18", Dhuhr: "12:07", Asr: "14:04", Maghrib: "15:53", Isha: "18:02" } },
-{ date: "2025-12-25", times: { Fajr: "06:12", Sunrise: "08:19", Dhuhr: "12:07", Asr: "14:05", Maghrib: "15:54", Isha: "18:03" } },
-{ date: "2025-12-26", times: { Fajr: "06:12", Sunrise: "08:19", Dhuhr: "12:08", Asr: "14:06", Maghrib: "15:55", Isha: "18:04" } },
-{ date: "2025-12-27", times: { Fajr: "06:12", Sunrise: "08:19", Dhuhr: "12:08", Asr: "14:06", Maghrib: "15:56", Isha: "18:04" } },
-{ date: "2025-12-28", times: { Fajr: "06:13", Sunrise: "08:19", Dhuhr: "12:09", Asr: "14:07", Maghrib: "15:56", Isha: "18:05" } },
-{ date: "2025-12-29", times: { Fajr: "06:13", Sunrise: "08:19", Dhuhr: "12:09", Asr: "14:08", Maghrib: "15:57", Isha: "18:06" } },
-{ date: "2025-12-30", times: { Fajr: "06:13", Sunrise: "08:19", Dhuhr: "12:10", Asr: "14:09", Maghrib: "15:58", Isha: "18:07" } },
-{ date: "2025-12-31", times: { Fajr: "06:13", Sunrise: "08:19", Dhuhr: "12:10", Asr: "14:10", Maghrib: "15:59", Isha: "18:08" } }
+{ date: "2026-01-01", times: { Fajr: "06:13", Sunrise: "08:19", Dhuhr: "12:11", Asr: "14:11", Maghrib: "16:01", Isha: "18:09" } },
+{ date: "2026-01-02", times: { Fajr: "06:13", Sunrise: "08:19", Dhuhr: "12:11", Asr: "14:12", Maghrib: "16:02", Isha: "18:10" } },
+{ date: "2026-01-03", times: { Fajr: "06:13", Sunrise: "08:19", Dhuhr: "12:12", Asr: "14:13", Maghrib: "16:03", Isha: "18:11" } },
+{ date: "2026-01-04", times: { Fajr: "06:13", Sunrise: "08:18", Dhuhr: "12:12", Asr: "14:14", Maghrib: "16:04", Isha: "18:12" } },
+{ date: "2026-01-05", times: { Fajr: "06:13", Sunrise: "08:18", Dhuhr: "12:13", Asr: "14:16", Maghrib: "16:05", Isha: "18:13" } },
+{ date: "2026-01-06", times: { Fajr: "06:12", Sunrise: "08:17", Dhuhr: "12:13", Asr: "14:17", Maghrib: "16:07", Isha: "18:14" } },
+{ date: "2026-01-07", times: { Fajr: "06:12", Sunrise: "08:17", Dhuhr: "12:13", Asr: "14:18", Maghrib: "16:08", Isha: "18:15" } },
+{ date: "2026-01-08", times: { Fajr: "06:12", Sunrise: "08:16", Dhuhr: "12:14", Asr: "14:19", Maghrib: "16:10", Isha: "18:16" } },
+{ date: "2026-01-09", times: { Fajr: "06:12", Sunrise: "08:16", Dhuhr: "12:14", Asr: "14:21", Maghrib: "16:11", Isha: "18:17" } },
+{ date: "2026-01-10", times: { Fajr: "06:11", Sunrise: "08:15", Dhuhr: "12:15", Asr: "14:22", Maghrib: "16:13", Isha: "18:18" } },
+{ date: "2026-01-11", times: { Fajr: "06:11", Sunrise: "08:14", Dhuhr: "12:15", Asr: "14:24", Maghrib: "16:14", Isha: "18:20" } },
+{ date: "2026-01-12", times: { Fajr: "06:10", Sunrise: "08:14", Dhuhr: "12:15", Asr: "14:25", Maghrib: "16:16", Isha: "18:21" } },
+{ date: "2026-01-13", times: { Fajr: "06:10", Sunrise: "08:13", Dhuhr: "12:16", Asr: "14:27", Maghrib: "16:17", Isha: "18:22" } },
+{ date: "2026-01-14", times: { Fajr: "06:09", Sunrise: "08:12", Dhuhr: "12:16", Asr: "14:28", Maghrib: "16:19", Isha: "18:24" } },
+{ date: "2026-01-15", times: { Fajr: "06:09", Sunrise: "08:11", Dhuhr: "12:17", Asr: "14:30", Maghrib: "16:21", Isha: "18:25" } },
+{ date: "2026-01-16", times: { Fajr: "06:08", Sunrise: "08:10", Dhuhr: "12:17", Asr: "14:31", Maghrib: "16:22", Isha: "18:26" } },
+{ date: "2026-01-17", times: { Fajr: "06:07", Sunrise: "08:09", Dhuhr: "12:17", Asr: "14:33", Maghrib: "16:24", Isha: "18:28" } },
+{ date: "2026-01-18", times: { Fajr: "06:07", Sunrise: "08:08", Dhuhr: "12:18", Asr: "14:35", Maghrib: "16:26", Isha: "18:29" } },
+{ date: "2026-01-19", times: { Fajr: "06:06", Sunrise: "08:07", Dhuhr: "12:18", Asr: "14:36", Maghrib: "16:28", Isha: "18:31" } },
+{ date: "2026-01-20", times: { Fajr: "06:05", Sunrise: "08:06", Dhuhr: "12:18", Asr: "14:38", Maghrib: "16:29", Isha: "18:32" } },
+{ date: "2026-01-21", times: { Fajr: "06:04", Sunrise: "08:04", Dhuhr: "12:18", Asr: "14:40", Maghrib: "16:31", Isha: "18:33" } },
+{ date: "2026-01-22", times: { Fajr: "06:03", Sunrise: "08:03", Dhuhr: "12:19", Asr: "14:41", Maghrib: "16:33", Isha: "18:35" } },
+{ date: "2026-01-23", times: { Fajr: "06:02", Sunrise: "08:02", Dhuhr: "12:19", Asr: "14:43", Maghrib: "16:35", Isha: "18:36" } },
+{ date: "2026-01-24", times: { Fajr: "06:01", Sunrise: "08:00", Dhuhr: "12:19", Asr: "14:45", Maghrib: "16:37", Isha: "18:38" } },
+{ date: "2026-01-25", times: { Fajr: "06:00", Sunrise: "07:59", Dhuhr: "12:19", Asr: "14:47", Maghrib: "16:39", Isha: "18:40" } },
+{ date: "2026-01-26", times: { Fajr: "05:59", Sunrise: "07:57", Dhuhr: "12:20", Asr: "14:49", Maghrib: "16:41", Isha: "18:41" } },
+{ date: "2026-01-27", times: { Fajr: "05:58", Sunrise: "07:56", Dhuhr: "12:20", Asr: "14:50", Maghrib: "16:42", Isha: "18:43" } },
+{ date: "2026-01-28", times: { Fajr: "05:57", Sunrise: "07:54", Dhuhr: "12:20", Asr: "14:52", Maghrib: "16:44", Isha: "18:44" } },
+{ date: "2026-01-29", times: { Fajr: "05:55", Sunrise: "07:53", Dhuhr: "12:20", Asr: "14:54", Maghrib: "16:46", Isha: "18:46" } },
+{ date: "2026-01-30", times: { Fajr: "05:54", Sunrise: "07:51", Dhuhr: "12:20", Asr: "14:56", Maghrib: "16:48", Isha: "18:48" } },
+{ date: "2026-01-31", times: { Fajr: "05:53", Sunrise: "07:50", Dhuhr: "12:21", Asr: "14:58", Maghrib: "16:50", Isha: "18:49" } }
 
 
 
@@ -143,9 +143,9 @@ function updatePrayerTable() {
 
     if (!next) {
       container.innerHTML = `
-        🕌 All scheduled prayers have passed.<br>
+        🕌 Error prayer times cannot be displayed at this time.<br>
         <span style="font-size: 0.9em; color: #666;">
-          You may still offer extra prayers or reflect quietly.
+          We are sorry for any inconviniences. We are working on
         </span>`;
       container.className = "";
       return;
