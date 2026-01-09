@@ -184,6 +184,62 @@ h1 {
   font-style: italic;
 }
 
+/* RAMADAN COUNTDOWN START */
+
+.ramadan-banner {
+  background: url('mosque.jpg') no-repeat center center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+  border-radius: 12px;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+}
+
+.ramadan-banner::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 12px;
+}
+
+.ramadan-banner h1,
+.ramadan-banner p,
+.ramadan-countdown {
+  position: relative; /* ensures text sits above overlay */
+  z-index: 1;
+}
+
+.ramadan-banner rama{
+    color: #ffffff;
+  font-size: 2em;
+    font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.ramadan-banner p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.ramadan-countdown {
+  font-size: 1.5em;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px 25px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.ramadan-countdown span {
+      color: #eff5fe;
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+
+/* RAMADAN COUNTDOWN ENDZZ */
 
 
 /* Hidden by default *//* Modal container */
