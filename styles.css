@@ -1,15 +1,38 @@
+/* --------------------------------------------- */
+/*  RAMADAN ROYAL PURPLE THEME — PART 1          */
+/*  Global Reset, Fonts, Header, Sidebar, Body   */
+/* --------------------------------------------- */
 
-
-
-
-
-/* Base & Body */
+/* Global Reset */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* Ramadan Colour Variables */
+:root {
+  --ramadan-purple-dark: #2a0f4d;
+  --ramadan-purple-mid: #4b1f7a;
+  --ramadan-purple-light: #7a4bb8;
+  --ramadan-gold: #d4af37;
+  --ramadan-gold-soft: rgba(212, 175, 55, 0.6);
+  --ramadan-bg: linear-gradient(to bottom, #2a0f4d, #4b1f7a, #7a4bb8);
+  --ramadan-text: #f5eaff;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: var(--ramadan-bg);
+  background-attachment: fixed;
+  color: var(--ramadan-text);
+  padding: 20px;
+  padding-bottom: 100px;
+}
+
+/* Header Row */
 .header-row {
   display: flex;
   align-items: center;
@@ -17,64 +40,47 @@
   padding: 1em 2em;
 }
 
+/* Logo */
 .logo {
   max-width: 100px;
   height: auto;
   flex-shrink: 0;
 }
 
-.bismillah {
-  flex-grow: 1;
-  text-align: center;
-  font-size: 2.5rem;
-  color: #006600;
-  margin: 0;
-  font-family: 'Scheherazade New', serif; /* optional Arabic font */
-}
+/* Arabic Font */
 @font-face {
   font-family: 'AraQuran';
   src: url('../fonts/AraQuranIslamic4D-K7n4W.ttf') format('truetype');
 }
 
+/* Bismillah */
 .bismillah {
   font-family: 'AraQuran', serif;
   font-size: 3rem;
   text-align: center;
   margin-top: 30px;
-  color: #450bb0;
-  animation: fadeIn 2s ease-out;
-}
-
-
-.bismillah {
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-.bismillah {
-  font-family: 'AraQuran', serif;
-  font-size: 3rem;
-  text-align: center;
-  margin-top: 30px;
-  color: #0066cc;
+  color: var(--ramadan-gold);
+  text-shadow: 0 0 12px var(--ramadan-gold-soft), 0 0 24px var(--ramadan-gold);
   opacity: 0;
   animation: fadeIn 2.5s ease-out forwards;
 }
 
+/* Fade-in Animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Sidebar base */
+/* Sidebar */
 .sidebar {
   position: fixed;
   top: 0;
-  left: -200px; /* hidden by default */
+  left: -200px;
   width: 200px;
   height: 100vh;
-  background-color: #ffd793;
-  border-right: 1px solid #ffa348;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+  background: var(--ramadan-purple-dark);
+  border-right: 2px solid var(--ramadan-gold);
+  box-shadow: 2px 0 12px rgba(0,0,0,0.4);
   padding-top: 60px;
   transition: left 0.3s ease;
   z-index: 1000;
@@ -93,7 +99,7 @@
 .sidebar a {
   display: block;
   padding: 10px 20px;
-  color: #333;
+  color: var(--ramadan-gold);
   text-decoration: none;
   font-weight: 500;
   border-radius: 4px;
@@ -101,87 +107,519 @@
 }
 
 .sidebar a:hover {
-  background-color: #f9cf7c;
+  background: rgba(212, 175, 55, 0.2);
 }
 
-/* Toggle button */
-#menu-toggle {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  z-index: 1100;
-  background: #ffebce;
-  border: 1px solid #ccc;
-  padding: 8px 12px;
-  font-size: 18px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-/* When sidebar is open */
+/* Sidebar Open */
 .sidebar.open {
   left: 0;
 }
 
-/* Push content if needed */
+/* Push Content */
 body.sidebar-open {
   margin-left: 200px;
   transition: margin-left 0.3s ease;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: #f4e4c4;
-  color: #333;
-  padding: 20px;
+/* Menu Toggle Button */
+#menu-toggle {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1100;
+  background: var(--ramadan-purple-light);
+  border: 1px solid var(--ramadan-gold);
+  padding: 8px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: var(--ramadan-gold);
+  box-shadow: 0 0 10px var(--ramadan-gold-soft);
 }
 
-/* Headings & Text */
-h1 {
-  color: #1a3f63;
-  margin-bottom: 0.5em;
+/* --------------------------------------------- */
+/*  RAMADAN ROYAL PURPLE THEME — PART 2          */
+/*  Prayer Table, Countdown, Modal, Lanterns     */
+/* --------------------------------------------- */
+
+/* Current Time Box */
+#current-time {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.6em;
+  padding: 12px 24px;
+  margin-top: 20px;
+  border-radius: 14px;
+  background: linear-gradient(to right, var(--ramadan-purple-mid), var(--ramadan-purple-light));
+  color: var(--ramadan-gold);
+  text-align: center;
+  box-shadow: 0 0 16px var(--ramadan-gold-soft);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+  animation: glowTime 3s ease-in-out infinite;
 }
+
+/* Next Prayer Box */
+#next-prayer {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.4em;
+  padding: 12px 24px;
+  border-radius: 14px;
+  background: linear-gradient(to right, var(--ramadan-purple-light), var(--ramadan-purple-mid));
+  color: var(--ramadan-gold);
+  text-align: center;
+  margin-top: 12px;
+  box-shadow: 0 0 16px var(--ramadan-gold-soft);
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+/* Alert Style */
+.prayer-alert {
+  background: var(--ramadan-purple-light);
+  color: var(--ramadan-gold);
+  font-weight: bold;
+  box-shadow: 0 0 14px var(--ramadan-gold-soft);
+}
+
+/* Glow Animation */
+@keyframes glowTime {
+  0% { box-shadow: 0 0 12px var(--ramadan-gold-soft); }
+  50% { box-shadow: 0 0 22px var(--ramadan-gold); }
+  100% { box-shadow: 0 0 12px var(--ramadan-gold-soft); }
+}
+
+/* Prayer Table */
+table {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 2em;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  color: var(--ramadan-text);
+  backdrop-filter: blur(6px);
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.15);
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+th {
+  background: var(--ramadan-purple-mid);
+  color: var(--ramadan-gold);
+  font-weight: bold;
+  border-bottom: 2px solid var(--ramadan-gold);
+}
+
+/* Past Prayer */
+.past-prayer {
+  opacity: 0.35;
+  color: #c7b4e3;
+}
+
+/* Current Prayer */
+.current-prayer {
+  background: rgba(212, 175, 55, 0.25) !important;
+  color: var(--ramadan-gold) !important;
+  font-weight: bold;
+  box-shadow: 0 0 18px var(--ramadan-gold-soft);
+  border-left: 6px solid var(--ramadan-gold);
+  transition: all 0.4s ease;
+}
+
+/* Next Prayer */
+.next-prayer {
+  background: rgba(123, 75, 184, 0.25) !important;
+  color: #f0dfff !important;
+  font-weight: bold;
+  border-left: 6px solid var(--ramadan-purple-light);
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 10px rgba(212,175,55,0.3); }
+  50% { box-shadow: 0 0 24px rgba(212,175,55,0.7); }
+  100% { box-shadow: 0 0 10px rgba(212,175,55,0.3); }
+}
+
+/* Smooth Row Transitions */
+table tr {
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+}
+
+/* Modal Background */
+#timetableModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(20, 0, 40, 0.9);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Modal Fade-in */
+#timetableModal.show {
+  animation: fadeIn 0.4s ease;
+}
+
+/* Modal Image */
+#timetablePopup {
+  max-width: 90vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px var(--ramadan-gold-soft);
+}
+
+/* Close Button */
+#closeModal {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 36px;
+  color: var(--ramadan-gold);
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 10000;
+  transition: color 0.3s ease;
+}
+
+#closeModal:hover {
+  color: #ffdddd;
+}
+
+/* Lantern Trail */
+#lanternTrail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lantern {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--ramadan-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--ramadan-gold);
+  animation: floatLantern 20s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes floatLantern {
+  0% { transform: translateY(0) translateX(0); opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+}
+
+/* Back to Top Button */
+#backToTop {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  z-index: 9999;
+  background: var(--ramadan-purple-light);
+  color: var(--ramadan-gold);
+  border: 2px solid var(--ramadan-gold);
+  border-radius: 50%;
+  padding: 12px 16px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 0 14px var(--ramadan-gold-soft);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#backToTop.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1.05);
+}
+
+/* --------------------------------------------- */
+/*  RAMADAN ROYAL PURPLE THEME — PART 3          */
+/*  Video Section, About Section, PDF, Notices   */
+/* --------------------------------------------- */
+
+/* Video Wrapper */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 42.85%;
+  height: 0;
+  overflow: hidden;
+  margin: 30px auto;
+  max-width: 800px;
+  border-radius: 14px;
+  background: linear-gradient(to bottom right, var(--ramadan-purple-mid), var(--ramadan-purple-light));
+  box-shadow: 0 0 20px rgba(0,0,0,0.4), 0 0 14px var(--ramadan-gold-soft);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 14px;
+}
+
+/* Video Section */
+.video-section {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--ramadan-text);
+}
+
+.video-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: var(--ramadan-gold);
+  text-align: center;
+  text-shadow: 0 0 10px var(--ramadan-gold-soft);
+}
+
+.video-title {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #e8d9ff;
+}
+
+/* About Section */
+.about-section {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4), 0 0 14px var(--ramadan-gold-soft);
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.8;
+  color: var(--ramadan-text);
+  backdrop-filter: blur(6px);
+}
+
+.about-section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--ramadan-gold);
+  text-shadow: 0 0 10px var(--ramadan-gold-soft);
+}
+
+.about-section p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.about-section strong {
+  color: var(--ramadan-gold);
+}
+
+.about-section em {
+  font-style: italic;
+  color: #e8d9ff;
+}
+
+/* PDF Section */
+.pdf-section {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.pdf-section h2 {
+  margin-bottom: 16px;
+  font-size: 1.5em;
+  color: var(--ramadan-gold);
+  text-shadow: 0 0 10px var(--ramadan-gold-soft);
+}
+
+.pdf-section iframe {
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4), 0 0 14px var(--ramadan-gold-soft);
+  animation: fadeInSlide 1s ease-out;
+}
+
+/* Slide-in Animation */
+@keyframes fadeInSlide {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Announcements */
+.announcement-list {
+  padding: 1em;
+}
+
+.announcement {
+  background: rgba(255,255,255,0.05);
+  border-left: 4px solid var(--ramadan-gold);
+  margin-bottom: 1em;
+  padding: 1em;
+  border-radius: 8px;
+  color: var(--ramadan-text);
+  box-shadow: 0 0 12px rgba(0,0,0,0.3), 0 0 10px var(--ramadan-gold-soft);
+  backdrop-filter: blur(4px);
+}
+
+
+/* --------------------------------------------- */
+/*  RAMADAN ROYAL PURPLE THEME — PART 4          */
+/*  Tasbih, Buttons, TV Bar, Social Links        */
+/* --------------------------------------------- */
+
+/* Tasbih Container */
+.tasbih-container {
+  text-align: center;
+  padding: 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4), 0 0 14px var(--ramadan-gold-soft);
+  max-width: 300px;
+  margin: auto;
+  backdrop-filter: blur(6px);
+  color: var(--ramadan-text);
+}
+
+/* Tasbih Count */
+#count {
+  font-size: 2.4em;
+  margin-bottom: 20px;
+  color: var(--ramadan-gold);
+  text-shadow: 0 0 10px var(--ramadan-gold-soft);
+}
+
+/* Buttons */
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  border: 2px solid var(--ramadan-gold);
+  border-radius: 8px;
+  background: linear-gradient(to right, var(--ramadan-purple-mid), var(--ramadan-purple-light));
+  color: var(--ramadan-gold);
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 0 12px var(--ramadan-gold-soft);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--ramadan-gold);
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.social-links a {
+  color: var(--ramadan-gold);
+  font-size: 1.6rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #fff;
+  transform: scale(1.2);
+  text-shadow: 0 0 12px var(--ramadan-gold);
+}
+
+/* TV Bar */
+.tv-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--ramadan-purple-dark);
+  border-top: 2px solid var(--ramadan-gold);
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.4);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  font-family: 'Quicksand', sans-serif;
+  color: var(--ramadan-gold);
+}
+
+/* TV Bar Badge */
+.badge {
+  background: var(--ramadan-purple-light);
+  color: var(--ramadan-gold);
+  padding: 8px 12px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-right: 2px solid var(--ramadan-gold);
+}
+
+/* Marquee Text */
+.tv-bar marquee {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.1rem;
+  color: var(--ramadan-text);
+  padding-left: 10px;
+  white-space: nowrap;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px var(--ramadan-gold-soft);
+}
+
+/* Footer Padding */
+body {
+  padding-bottom: 120px;
+}
+
+/* Image Styling */
+img {
+  margin-top: 2em;
+  max-width: 150px;
+  filter: drop-shadow(0 0 10px var(--ramadan-gold-soft));
+}
+
+/* Final Polish */
+h1, h2, h3 {
+  color: var(--ramadan-gold);
+  text-shadow: 0 0 10px var(--ramadan-gold-soft);
+}
+
 .special {
   font-size: 30px;
-  color: rgb(243, 1, 231);
+  color: var(--ramadan-gold);
   font-weight: bold;
 }
-
 
 .cool {
   font-size: 20px;
-  color: rgb(0, 15, 230);
+  color: var(--ramadan-text);
   font-weight: bold;
-  margin-top: 20px;   /* adds space above */
-}
-
-
-
-
-
-.livestream-wrapper {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #ffbf5f;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  text-align: center;
-}
-
-.livestream-wrapper h2 {
-  font-size: 2rem;
-  color: #006600;
-  margin-bottom: 10px;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-#liveStatus {
-  font-size: 1.2rem;
-  color: #444;
-  margin-bottom: 20px;
-  font-style: italic;
+  margin-top: 20px;
 }
 
 /* RAMADAN COUNTDOWN START */
@@ -242,543 +680,86 @@ h1 {
 /* RAMADAN COUNTDOWN ENDZZ */
 
 
-/* Hidden by default *//* Modal container */
-#timetableModal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0,0,0,0.9); /* dark overlay */
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-}
-
-/* Show modal */
-#timetableModal.show {
-  display: flex;
-}
-
-
-#timetablePopup {
-  max-width: 90vw;   /* instead of 100vw */
-  max-height: 80vh;  /* instead of 100vh */
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  display: block;
-  margin: auto;
-  border-radius: 8px; /* optional: gives it softer edges */
-}
-
-
-#timetableModal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0,0,0,0.9);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-
-#timetableModal.show {
-  animation: fadeIn 0.4s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-
-
-#closeModal {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 36px;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  z-index: 10000;
-  transition: color 0.3s ease;
-}
-
-#closeModal:hover {
-  color: #ffaaaa;
-}
-
-
-
-#current-time {
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 1.6em;
-  padding: 12px 24px;
-  margin-top: 20px;
-  border-radius: 14px;
-  background: linear-gradient(to right, #fff6d1, #ffe9a3);
-  color: #3b2f00;
-  text-align: center;
-  box-shadow: 0 0 12px rgba(255, 223, 150, 0.4);
-  font-weight: 600;
+.ramadan-greeting {
+  font-family: 'AraQuran', serif;
+  font-size: 2.4rem;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: var(--ramadan-gold);
+  text-shadow: 
+      0 0 10px var(--ramadan-gold-soft),
+      0 0 20px var(--ramadan-gold),
+      0 0 30px rgba(255, 255, 255, 0.1);
+  animation: ramadanGreetingGlow 3.5s ease-in-out infinite;
   letter-spacing: 1px;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
-  animation: glowTime 3s ease-in-out infinite;
 }
 
-#next-prayer {
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 1.4em;
-  padding: 12px 24px;
-  border-radius: 14px;
-  background: linear-gradient(to right, #fae185, #f9b702);
-  color: #2c3e50;
-  text-align: center;
-  margin-top: 12px;
-  box-shadow: 0 0 12px rgba(180, 200, 255, 0.3);
-  transition: all 0.3s ease;
-  font-weight: 600;
-}
-
-.prayer-alert {
-  background: #ddc54d;
-  color: #b58900;
-  font-weight: bold;
-  box-shadow: 0 0 14px rgba(255, 215, 0, 0.4);
-}
-
-@keyframes glowTime {
-  0% { box-shadow: 0 0 12px rgba(255, 223, 150, 0.4); }
-  50% { box-shadow: 0 0 20px rgba(255, 223, 150, 0.6); }
-  100% { box-shadow: 0 0 12px rgba(255, 223, 150, 0.4); }
-}
-
-
-body {
-  background: linear-gradient(to bottom, #f1e07e, #fcc75d);
-  background-attachment: fixed;
-}
-
-
-.table {
-  box-shadow: 0 0 1000px rgba(255, 223, 186, 0.5);
-}
-
-
-/* Table */
-table {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto 2em;
-  border-collapse: collapse;
-  background-color: #fffdd0;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-th, td {
-  padding: 12px;
-  border: 1px solid #ddd;
-  text-align: center;
-  font-size: 1.2rem;
-}
-th {
-  background-color: #f0e68c;
-  font-weight: bold;
-}
-
-/* Image */
-img {
-  margin-top: 2em;
-  max-width: 150px;
-}
-
-
-
-
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 3em;
-  margin-top: 2em;
-  margin-bottom: 2em; /* ← this creates the space */
-}
-
-
-.tv-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fda409;
-  border-top: 1px solid #ccc;
-  box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  font-family: 'Quicksand', sans-serif;
-}
-
-.badge {
-  background-color: #0066cc;
-  color: rgb(255, 255, 255);
-  padding: 8px 12px;
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-
-.tv-bar marquee {
-  font-family: 'Quicksand', sans-serif; /* or 'Merriweather', serif */
-  font-size: 1.1rem;
-  color: #2c2c2c; /* deep readable tone */
-  padding-left: 10px;
-  white-space: nowrap;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-}
-
-.tv-bar marquee {
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
-}
-
-
-
-#backToTop {
-  position: fixed;
-  bottom: 60px;
-  right: 20px;
-  z-index: 100;
-  background-color: #006600;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 12px 16px;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  transition: opacity 0.3s ease;
-  opacity: 0;
-  pointer-events: none;
-}
-
-#backToTop.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-#backToTop {
-  position: fixed;
-  bottom: px; /* lift it above the scroll text */
-  right: 20px;
-  z-index: 9999; /* make sure it’s above everything */
-  background-color: #006600;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 12px 16px;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  transition: opacity 0.3s ease;
-  opacity: 0;
-  pointer-events: none;
-}
-
-#backToTop.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-
-
-
-
-
-
-
-#lanternTrail {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1; /* behind content */
-}
-
-.lantern {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background-color: #ffeeaa;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #ffeeaa;
-  animation: floatLantern 20s linear infinite;
-  opacity: 0.7;
-}
-
-@keyframes floatLantern {
+/* Soft glowing animation */
+@keyframes ramadanGreetingGlow {
   0% {
-    transform: translateY(0) translateX(0);
-    opacity: 0.7;
+    text-shadow: 
+      0 0 8px var(--ramadan-gold-soft),
+      0 0 16px var(--ramadan-gold);
+    transform: translateY(0);
   }
   50% {
-    opacity: 1;
+    text-shadow: 
+      0 0 16px var(--ramadan-gold),
+      0 0 28px var(--ramadan-gold-soft);
+    transform: translateY(-3px);
   }
   100% {
-    transform: translateY(-100vh) translateX(50px);
-    opacity: 0;
-  }
-}
-
-
-
-.video-wrapper {
-  position: relative;
-  padding-bottom: 30.85%; /* 21:9 aspect ratio */
-  height: 0;
-  overflow: hidden;
-  margin: 30px auto;
-  max-width: 800px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
-  background-color: #ffbf5f;
-}
-
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 12px;
-}
-
-
-.about-section {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: #fffdd0;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.08);
-  font-family: 'Segoe UI', sans-serif;
-  line-height: 1.8;
-  color: #333;
-}
-
-.about-section h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #007b5e;
-}
-
-.about-section p {
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-}
-
-.about-section strong {
-  color: #444;
-}
-
-.about-section em {
-  font-style: italic;
-  color: #555;
-}
-
-
-.video-section {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  font-family: 'Segoe UI', sans-serif;
-  color: #333;
-}
-
-.video-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-  color: #444;
-  text-align: center;
-}
-
-.video-title {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #555;
-}
-
-.video-wrapper {
-  position: relative;
-  padding-bottom: 42.85%; /* Adjust aspect ratio */
-  height: 0;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
-  background-color: #ffbf5f;
-}
-
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 12px;
-}
-
-
-
-
-
-h2 {
-  margin-top: 30px; /* Adjust as needed */
-}
-
-
-
-h2 {
-  margin-bottom: 0.5rem; /* Reduce space below headings */
-}
-
-.video-section {
-  margin-top: 0.5rem; /* Reduce space above the video section */
-}
-
-
-
-/* Past prayer — faded */
-.past-prayer {
-  opacity: 0.4;
-  color: #999;
-}
-
-/* Current prayer — golden glow */
-.current-prayer {
-  background-color: #fff6d1;
-  font-weight: bold;
-  color: #3b2f00;
-  box-shadow: 0 0 18px rgba(255, 223, 150, 0.6);
-  border-left: 6px solid #f9b702;
-  transition: all 0.4s ease;
-}
-
-/* Next prayer — pulsing amber */
-.next-prayer {
-  background-color: #fae185;
-  font-weight: bold;
-  color: #2c3e50;
-  box-shadow: 0 0 20px rgba(250, 200, 100, 0.6);
-  border-left: 6px solid #f9b702;
-  animation: pulseGlow 2s infinite ease-in-out;
-}
-
-@keyframes pulseGlow {
-  0% { box-shadow: 0 0 10px rgba(250, 200, 100, 0.3); }
-  50% { box-shadow: 0 0 24px rgba(250, 200, 100, 0.7); }
-  100% { box-shadow: 0 0 10px rgba(250, 200, 100, 0.3); }
-}
-
-
-table tr {
-  transition: background-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
-}
-
-
-.tasbih-container {
-  text-align: center;
-  padding: 20px;
-  background: #f5f5f5;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.1);
-  max-width: 300px;
-  margin: auto;
-}
-
-
-
-#count {
-  font-size: 2em;
-  margin-bottom: 20px;
-  color: #16a085;
-}
-
-button {
-  margin: 5px;
-  padding: 10px 20px;
-  font-size: 1em;
-  border: none;
-  border-radius: 6px;
-  background-color: #16a085;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #138d75;
-}
-
-
-
-.pdf-section {
-  margin-top: 40px; /* Adds space above the whole section */
-  text-align: center;
-}
-
-.pdf-section h2 {
-  margin-bottom: 16px;
-  font-size: 1.5em;
-  color: #2c3e50;
-}
-
-
-@keyframes fadeInSlide {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
+    text-shadow: 
+      0 0 8px var(--ramadan-gold-soft),
+      0 0 16px var(--ramadan-gold);
     transform: translateY(0);
   }
 }
 
-.pdf-section iframe {
-  animation: fadeInSlide 1s ease-out;
+/* Ramadan Greeting Banner */
+.ramadan-banner-top {
+  margin: 20px auto 30px;
+  padding: 18px 30px;
+  width: fit-content;
+  border-radius: 14px;
+  background: linear-gradient(
+      120deg,
+      rgba(75, 31, 122, 0.9),
+      rgba(122, 75, 184, 0.9),
+      rgba(75, 31, 122, 0.9)
+  );
+  background-size: 300% 300%;
+  animation: ramadanBannerFlow 8s ease-in-out infinite;
+  border: 2px solid var(--ramadan-gold);
+  box-shadow:
+      0 0 12px var(--ramadan-gold-soft),
+      0 0 22px rgba(212, 175, 55, 0.4),
+      inset 0 0 12px rgba(255, 255, 255, 0.08);
+  text-align: center;
 }
 
-
-.announcement-list {
-  padding: 1em;
+/* Text inside the banner */
+.ramadan-banner-top h2 {
+  font-family: 'AraQuran', serif;
+  font-size: 2.2rem;
+  color: var(--ramadan-gold);
+  margin: 0;
+  text-shadow:
+      0 0 10px var(--ramadan-gold-soft),
+      0 0 20px var(--ramadan-gold);
+  animation: ramadanTextFloat 3.5s ease-in-out infinite;
 }
 
-.announcement {
-  background: #f9f9f9;
-  border-left: 4px solid #2c3e50;
-  margin-bottom: 1em;
-  padding: 1em;
-  border-radius: 6px;
+/* Background animation */
+@keyframes ramadanBannerFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-
-body {
-  padding-bottom: 100px; /* Adjust the value as needed */
+/* Soft floating glow animation */
+@keyframes ramadanTextFloat {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-3px); opacity: 0.95; }
+  100% { transform: translateY(0); opacity: 1; }
 }
-
-
-
