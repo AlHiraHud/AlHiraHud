@@ -1,0 +1,99 @@
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const SCRIPT_URL = "https://YOUR_USERNAME.github.io/script.js";
+
+  async function loadPrayerSchedule() {
+    try {
+      const response = await fetch(SCRIPT_URL);
+      const js = await response.text();
+
+      // Extract the prayerSchedule array from your script.js
+      const match = js.match(/const prayerSchedule\s*=\s*(\[[\s\S]*?\]);/);
+
+      if (!match) {
+        console.error("Could not find prayerSchedule in script.js");
+        return null;
+      }
+
+      // Convert the extracted array string into real JS
+      const prayerSchedule = eval(match[1]);
+      return prayerSchedule;
+
+    } catch (err) {
+      console.error("Error loading script.js:", err);
+      return null;
+    }
+  }
+
+  function getNextPrayer(prayerSchedule) {
+    const now = new Date();
+    const order = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
+
+    const upcoming = prayerSchedule
+      .map(entry => {
+        const base = new Date(entry.date);
+        return order.map(name => {
+          const t = entry.times[name];
+          if (!t) return null;
+          const [hh, mm] = t.split(":").map(Number);
+          const timeObj = new Date(base.getFullYear(), base.getMonth(), base.getDate(), hh, mm);
+          return { name, timeStr: t, timeObj, date: entry.date };
+        }).filter(Boolean);
+      })
+      .flat()
+      .filter(p => p.timeObj > now);
+
+    return upcoming.length ? upcoming[0] : null;
+  }
+
+  async function updateWidget() {
+    const schedule = await loadPrayerSchedule();
+    if (!schedule) return;
+
+    const next = getNextPrayer(schedule);
+    const box = document.getElementById("next-prayer");
+
+    if (!next) {
+      box.innerHTML = "No upcoming prayers found.";
+      return;
+    }
+
+    const now = new Date();
+    const diff = next.timeObj - now;
+    const totalSec = Math.floor(diff / 1000);
+    const hours = Math.floor(totalSec / 3600);
+    const minutes = Math.floor((totalSec % 3600) / 60);
+    const seconds = totalSec % 60;
+
+    const dateObj = new Date(next.date);
+    const formattedDate = dateObj.toLocaleDateString("en-GB", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+
+    box.innerHTML = `
+      <strong>Next Prayer:</strong> ${next.name}<br>
+      <strong>Time:</strong> ${next.timeStr}<br>
+      <span style="font-size: 0.9em; color: #666;">${formattedDate}</span><br>
+      <strong>Time Until:</strong> ${hours}h ${minutes}m ${seconds}s
+    `;
+  }
+
+  updateWidget();
+  setInterval(updateWidget, 1000);
+
+});
+</script>
+
+
+<div id="next-prayer" style="
+  font-size: 18px;
+  padding: 12px;
+  background: #f7f7f7;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 1.6;
+"></div>

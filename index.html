@@ -7,35 +7,25 @@
   <link rel="stylesheet" href="styles.css" />
 
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-014PQ64JDX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-014PQ64JDX');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-014PQ64JDX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-014PQ64JDX');
+  </script>
 </head>
-
-
-
-
-</div>
-
-
 
 <body>
 
-
 <!-- Toggle Button -->
 <button id="menu-toggle" aria-label="Toggle menu">☰</button>
-
 
 <!-- Sidebar Navigation -->
 <nav class="sidebar" id="sidebar">
   <ul>
       <li><a href="index.html">🏠 Home</a></li>
-      <li><a href="donate.html"> 🤝 Donatinon Appeal</a></li>
+      <li><a href="donate.html"> 🤝 Donation Appeal</a></li>
       <li><a href="videos.html">🎥 Videos</a></li>
       <li><a href="prayer.html">🕌 Prayer Times</a></li>
       <li><a href="Tasbih.html">📿 Tasbih and Surahs</a></li>
@@ -44,31 +34,25 @@
   </ul>
 </nav>
 
-
 <div class="header-row">
   <img src="al_hira_centre_logo.png" alt="Al-Hira Centre Huddersfield Logo" class="logo">
   <div class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
 </div>
 
-
 <div class="ramadan-banner-top">
-    <h2>🌙 Ramadan Kareem 🌙</h2>
+  <h2>🌙 Ramadan Kareem 🌙</h2>
 </div>
 
+<h1>Welcome to the Al-Hira Education Centre</h1>
+<p>A space of presence, prayer, and peace</p>
 
+<p class="special">Timetable for February 2026.</p>
 
-    <h1>Welcome to the Al-Hira Education Centre</h1>
-    <p>A space of presence, prayer, and peace</p>
-  </header>
-
-
-
-  <p class="special">Timetable for February 2026.</p>
- <!-- HTML Element to Display Time -->
+<!-- Time + Next Prayer -->
 <div id="current-time"></div>
 <div id="next-prayer"></div>
 
- <!-- Ramadan banner -->
+<!-- Ramadan banner -->
 <div class="ramadan-banner">
   <rama>Ramadan is right round the corner!!</rama>
   <p>Thirty nights of prayer, peace, and purpose</p>
@@ -78,16 +62,6 @@
     <span id="minutes">00</span> MINS
   </div>
 </div>
-
- <!-- Ramadan banner endzz-->
-
-
-<div style="margin-top: 40px;"></div>
-
-
-
-
-
 
 <h2 id="prayer-title">🕌Daily Prayer Begining Times🕌</h2>
 <p id="table-date" style="font-weight: bold; margin-bottom: 10px;"></p>
@@ -102,57 +76,27 @@
   <tr><td>Isha</td><td data-prayer="Isha">No Data</td></tr>
 </table>
 
-
-
-<div id="next-prayer" style="
-  background-color: #f9f9f9;
-  padding: 12px;
-  border-radius: 8px;
-  box-shadow: 0 0 6px rgba(0,0,0,0.05);
-  line-height: 1.6;
-  margin-top: 20px;
-"></div>
-
-
 <div class="social-links">
-  <a href="https://www.facebook.com/SuffahFoundation/" target="_blank" aria-label="Facebook">
-    <img src="facebook.png" alt="Facebook">
-  </a>
-  </a>
-  <a href="https://www.youtube.com/@SuffahFoundation" target="_blank" aria-label="YouTube">
-    <img src="youtube.png" alt="YouTube">
-  </a>
-  <a href="https://www.tiktok.com/@suffahfoundation" target="_blank" aria-label="TikTok">
-    <img src="tiktok.png" alt="tiktok">
-  </a>
-  </a>
-  <a href="https://www.instagram.com/suffah_foundation/" target="_blank" aria-label="instagram">
-    <img src="insta.png" alt="instagram">
-  </a>
+  <a href="https://www.facebook.com/SuffahFoundation/" target="_blank"><img src="facebook.png"></a>
+  <a href="https://www.youtube.com/@SuffahFoundation" target="_blank"><img src="youtube.png"></a>
+  <a href="https://www.tiktok.com/@suffahfoundation" target="_blank"><img src="tiktok.png"></a>
+  <a href="https://www.instagram.com/suffah_foundation/" target="_blank"><img src="insta.png"></a>
 </div>
-
-
-
-
 
 <div id="lanternTrail"></div>
 
-
 <button id="backToTop" title="Back to Top">↑</button>
 
-
-  <footer>
-    <p>&copy; 2026 Al-Hira Education Centre </p>
-  </footer>
-
-
+<footer>
+  <p>&copy; 2026 Al-Hira Education Centre </p>
+</footer>
 
 <div class="tv-bar">
   <div class="badge">Notices</div>
-  <marquee direction="left" scrollamount="5" behavior="scroll">
-     Donate Now:   Al Hira Educational Centre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Sort Code: 30-64-10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account: 34642160 &nbsp;&nbsp;&nbsp;&nbsp; (May Allah Reward You For Donation Ameen) 
+  <marquee direction="left" scrollamount="5">
+     Donate Now: Al Hira Educational Centre — Sort Code: 30-64-10 — Account: 34642160 (May Allah Reward You)
+  </marquee>
 </div>
-
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -166,21 +110,7 @@
   });
 </script>
 
-
-
-  <script src="script.js"></script>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js').then(reg => {
-        console.log('✅ Service Worker registered');
-      }).catch(err => {
-        console.log('❌ Service Worker registration failed:', err);
-      });
-    });
-  }
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
