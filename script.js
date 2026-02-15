@@ -284,12 +284,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
-
 function resetTasbih() {
   tasbihCount = 0;
   currentPhraseIndex = 0;
   document.getElementById("count").innerText = tasbihCount;
   document.getElementById("phrase").innerText = phrases[currentPhraseIndex];
 }
+
+
+// ====== PRAYER NOTIFICATION SYSTEM ======
+
+let notifiedPrayers = {}; // prevents duplicates
+
+// Load your soft chime (same folder)
+const prayerSound = new Audio("prayer-alert.mp3");
+prayerSound.volume = 0.7; // gentle, respectful
+
+// Ask for notification permission
+if (Notification.permission !== "granted") {
+    Notification.requestPermission();
+}
+
+// Function to send notification
+function sendPrayerNotification(prayerName) {
+    if (Notification.permission === "granted") {
+        new Notification(`${prayerName} Time`, {
+            body: `It's time for ${prayerName}. May Allah accept your prayers.`,
+            icon: "moon-gold.png" // optional icon if you have one
+        });
+
+        // Play your soft chime
+        prayerSound.play().catch(() => {});
+    }
+}
+
+// Check prayer times every 30 seconds
+setInterval(() => {
+    const now = new Date();
+    const currentTime = now.getHours() + ":" + String(now.getMinutes()).padStart(2, "0");
+
+    // Your existing prayer times (from your timetable script)
+    const prayers = {
+        Fajr: fajrTime,
+        Dhuhr: dhuhrTime,
+        Asr: asrTime,
+        Maghrib: maghribTime,
+        Isha: ishaTime
+    };
+
+    for (const [name, time] of Object.entries(prayers)) {
+        if (currentTime === time && !notifiedPrayers[name]) {
+            sendPrayerNotification(name);
+            notifiedPrayers[name] = true;
+        }
+    }
+
+}, 30000);
+
+
