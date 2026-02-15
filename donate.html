@@ -17,6 +17,13 @@
 </script>
 
 <style>
+  .sidebar {
+  z-index: 10000 !important;
+}
+
+#menu-toggle {
+  z-index: 10001 !important;
+}
   /* Full‑screen maintenance overlay */
   #maintenanceOverlay {
     position: fixed;
@@ -84,7 +91,7 @@
 <!-- 🔧 MAINTENANCE OVERLAY (remove when done) -->
 <div id="maintenanceOverlay">
   <div class="maintenance-box">
-    <h1>🚧 This Page id Under Maintenance</h1>
+    <h1>🚧 Page Under Maintenance</h1>
     <p>
       We are currently performing essential updates to improve your experience.<br>
       Please check back shortly.
@@ -99,6 +106,7 @@
     </p>
   </div>
 </div>
+
 <!-- END MAINTENANCE OVERLAY -->
 
 <!-- Toggle Button -->
