@@ -149,7 +149,7 @@ function updatePrayerTable() {
 
     container.innerHTML = `
       <strong>Next Prayer ${next.name}</strong> at ${next.timeStr}<br>
-      <span style="font-size: 0.9em; color: #666;">On ${formattedDate}</span><br>
+      <span style="font-size: 0.9em; color: #ef0aff;">On ${formattedDate}</span><br>
       <strong>Time Until:</strong> ${hours}h ${minutes}m ${seconds}s
     `;
     container.className = "";
@@ -272,3 +272,15 @@ function resetTasbih() {
 
 
 
+if (!document.querySelector('.tv-bar')) {
+  document.body.insertAdjacentHTML('beforeend', `
+    <div class="tv-bar">
+      <div class="badge">Notices</div>
+      <div class="scroll-wrapper">
+        <div class="scroll-text">
+          Donate Now: Al Hira Educational Centre — Sort Code: 30-64-10 — Account: 34642160 (May Allah Reward You)
+        </div>
+      </div>
+    </div>
+  `);
+}

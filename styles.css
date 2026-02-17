@@ -190,31 +190,101 @@ body.sidebar-open {
 }
 
 /* Prayer Table */
-.prayer-cards {
-  max-width: 500px;
-  margin: 30px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+/* BACKPLATE PANEL */
+.prayer-panel {
+  background: radial-gradient(circle at center, #0a0215, #12051f, #1a0933);
+  padding: 30px 25px;
+  border-radius: 25px;
+  max-width: 650px;
+  margin: 40px auto;
+  box-shadow:
+    0 0 40px rgba(120, 0, 200, 0.5),
+    0 0 80px rgba(60, 0, 120, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+/* Title inside panel */
+#prayer-title {
+  text-align: center;
+  color: var(--ramadan-gold);
+  margin-bottom: 5px;
+  font-size: 1.8rem;
+}
+
+/* Date inside panel */
+#table-date {
+  text-align: center;
+  color: #e8d9ff;
+  margin-bottom: 20px !important;
+  font-size: 1.1rem;
+}
+
+/* Cards Container */
+.prayer-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* DRAMATIC GALAXY CARD */
 .prayer-card {
-  background: linear-gradient(135deg, #3a1660, #6b3fa8);
-  padding: 18px 22px;
-  border-radius: 16px;
+  background: radial-gradient(circle at top left, #6a3fa8 0%, #3b1f6b 35%, #12051f 80%, #000000 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  padding: 20px 24px;
+  border-radius: 20px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--ramadan-text);
-  box-shadow: 0 0 18px rgba(0,0,0,0.4), 0 0 12px var(--ramadan-gold-soft);
+
+  color: #ffffff;
+  box-shadow:
+    0 0 25px rgba(150, 80, 255, 0.6),
+    0 0 60px rgba(80, 0, 150, 0.4);
+
+  position: relative;
+  overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.prayer-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 25px var(--ramadan-gold);
+/* Floating nebula streak */
+.prayer-card::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 45deg,
+    rgba(255, 0, 200, 0.15),
+    rgba(0, 150, 255, 0.15),
+    rgba(255, 0, 200, 0.15)
+  );
+  animation: nebulaSpin 18s linear infinite;
+  z-index: 0;
 }
 
+@keyframes nebulaSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.prayer-card:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 35px rgba(200, 120, 255, 0.9),
+    0 0 80px rgba(120, 0, 200, 0.6);
+}
+
+/* Content stays above nebula */
+.prayer-name, .prayer-time {
+  position: relative;
+  z-index: 2;
+}
+
+/* Arabic + English */
 .prayer-name {
   display: flex;
   flex-direction: column;
@@ -223,56 +293,44 @@ body.sidebar-open {
 
 .prayer-name .ar {
   font-family: 'AraQuran', serif;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: var(--ramadan-gold);
 }
 
 .prayer-name .en {
-  font-size: 0.9rem;
-  opacity: 0.8;
+  font-size: 0.95rem;
+  opacity: 0.85;
 }
 
+/* Time */
 .prayer-time {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: bold;
   color: #fff;
 }
 
-/* reuse your logic but on cards if you want */
-.current-prayer {
-  border: 2px solid var(--ramadan-gold);
-  box-shadow: 0 0 25px var(--ramadan-gold);
-}
-
-.next-prayer {
-  border: 2px solid #b78cff;
-  box-shadow: 0 0 20px rgba(183, 140, 255, 0.7);
-}
-
-
 /* Past Prayer */
 .past-prayer {
   opacity: 0.35;
-  color: #c7b4e3;
+  filter: grayscale(40%);
 }
 
 /* Current Prayer */
 .current-prayer {
+  border: 2px solid var(--ramadan-gold);
   background: rgba(212, 175, 55, 0.25) !important;
   color: var(--ramadan-gold) !important;
   font-weight: bold;
-  box-shadow: 0 0 18px var(--ramadan-gold-soft);
-  border-left: 6px solid var(--ramadan-gold);
-  transition: all 0.4s ease;
+  box-shadow: 0 0 35px var(--ramadan-gold);
 }
 
 /* Next Prayer */
 .next-prayer {
+  border: 2px solid #b78cff;
   background: rgba(123, 75, 184, 0.25) !important;
   color: #f0dfff !important;
   font-weight: bold;
-  border-left: 6px solid var(--ramadan-purple-light);
-  animation: pulseGlow 2s infinite ease-in-out;
+  box-shadow: 0 0 30px rgba(183, 140, 255, 0.8);
 }
 
 @keyframes pulseGlow {
@@ -602,7 +660,7 @@ button:hover {
   color: var(--ramadan-gold);
 }
 
-/* TV Bar Badge */
+/* Badge */
 .badge {
   background: var(--ramadan-purple-light);
   color: var(--ramadan-gold);
@@ -612,16 +670,27 @@ button:hover {
   border-right: 2px solid var(--ramadan-gold);
 }
 
-/* Marquee Text */
-.tv-bar marquee {
-  font-family: 'Quicksand', sans-serif;
+/* Smooth Marquee Replacement */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.marquee-text {
+  display: inline-block;
+  padding-left: 100%;
   font-size: 1.1rem;
   color: var(--ramadan-text);
-  padding-left: 10px;
-  white-space: nowrap;
   font-weight: 500;
   letter-spacing: 0.5px;
   text-shadow: 0 0 10px var(--ramadan-gold-soft);
+  animation: marqueeScroll 20s linear infinite;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
 }
 
 /* Footer Padding */

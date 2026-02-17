@@ -53,57 +53,61 @@
 <div id="next-prayer"></div>
 
 
-<h2 id="prayer-title">🕌Daily Prayer Begining Times🕌</h2>
-<p id="table-date" style="font-weight: bold; margin-bottom: 10px;"></p>
+<div class="prayer-panel">
 
-<div class="prayer-cards">
+  <h2 id="prayer-title">🕌Daily Prayer Beginning Times🕌</h2>
+  <p id="table-date" style="font-weight: bold; margin-bottom: 10px;"></p>
 
-  <div class="prayer-card">
-    <div class="prayer-name">
-      <span class="ar">الفجر</span>
-      <span class="en">Fajr</span>
+  <div class="prayer-cards">
+
+    <div class="prayer-card" data-card="Fajr">
+      <div class="prayer-name">
+        <span class="ar">الفجر</span>
+        <span class="en">Fajr</span>
+      </div>
+      <div class="prayer-time" data-prayer="Fajr">No Data</div>
     </div>
-    <div class="prayer-time" data-prayer="Fajr">No Data</div>
-  </div>
 
-  <div class="prayer-card">
-    <div class="prayer-name">
-      <span class="ar">الشروق</span>
-      <span class="en">Sunrise</span>
+    <div class="prayer-card" data-card="Sunrise">
+      <div class="prayer-name">
+        <span class="ar">الشروق</span>
+        <span class="en">Sunrise</span>
+      </div>
+      <div class="prayer-time" data-prayer="Sunrise">No Data</div>
     </div>
-    <div class="prayer-time" data-prayer="Sunrise">No Data</div>
-  </div>
 
-  <div class="prayer-card">
-    <div class="prayer-name">
-      <span class="ar">الظهر</span>
-      <span class="en">Dhuhr</span>
+    <div class="prayer-card" data-card="Dhuhr">
+      <div class="prayer-name">
+        <span class="ar">الظهر</span>
+        <span class="en">Dhuhr</span>
+      </div>
+      <div class="prayer-time" data-prayer="Dhuhr">No Data</div>
     </div>
-    <div class="prayer-time" data-prayer="Dhuhr">No Data</div>
-  </div>
 
-  <div class="prayer-card">
-    <div class="prayer-name">
-      <span class="ar">العصر</span>
-      <span class="en">Asr</span>
+    <div class="prayer-card" data-card="Asr">
+      <div class="prayer-name">
+        <span class="ar">العصر</span>
+        <span class="en">Asr</span>
+      </div>
+      <div class="prayer-time" data-prayer="Asr">No Data</div>
     </div>
-    <div class="prayer-time" data-prayer="Asr">No Data</div>
-  </div>
 
-  <div class="prayer-card">
-    <div class="prayer-name">
-      <span class="ar">المغرب</span>
-      <span class="en">Maghrib</span>
+    <div class="prayer-card" data-card="Maghrib">
+      <div class="prayer-name">
+        <span class="ar">المغرب</span>
+        <span class="en">Maghrib</span>
+      </div>
+      <div class="prayer-time" data-prayer="Maghrib">No Data</div>
     </div>
-    <div class="prayer-time" data-prayer="Maghrib">No Data</div>
-  </div>
 
-  <div class="prayer-card">
-    <div class="prayer-name">
-      <span class="ar">العشاء</span>
-      <span class="en">Isha</span>
+    <div class="prayer-card" data-card="Isha">
+      <div class="prayer-name">
+        <span class="ar">العشاء</span>
+        <span class="en">Isha</span>
+      </div>
+      <div class="prayer-time" data-prayer="Isha">No Data</div>
     </div>
-    <div class="prayer-time" data-prayer="Isha">No Data</div>
+
   </div>
 
 </div>
@@ -125,12 +129,17 @@
   <p>&copy; 2026 Al-Hira Education Centre </p>
 </footer>
 
+
 <div class="tv-bar">
   <div class="badge">Notices</div>
-  <marquee direction="left" scrollamount="5">
-     Donate Now: Al Hira Educational Centre — Sort Code: 30-64-10 — Account: 34642160 (May Allah Reward You)
-  </marquee>
+  <div class="marquee-container">
+    <div class="marquee-text">
+     Donate Now: Al Hira Educational Centre — Sort Code: 30-64-10 — Account: 34642160 (May Allah reward you for your donation)
+    </div>
+  </div>
 </div>
+
+
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
