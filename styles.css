@@ -190,32 +190,65 @@ body.sidebar-open {
 }
 
 /* Prayer Table */
-table {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto 2em;
-  border-collapse: collapse;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+.prayer-cards {
+  max-width: 500px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.prayer-card {
+  background: linear-gradient(135deg, #3a1660, #6b3fa8);
+  padding: 18px 22px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: var(--ramadan-text);
-  backdrop-filter: blur(6px);
+  box-shadow: 0 0 18px rgba(0,0,0,0.4), 0 0 12px var(--ramadan-gold-soft);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-th, td {
-  padding: 12px;
-  border: 1px solid rgba(255,255,255,0.15);
-  text-align: center;
-  font-size: 1.2rem;
+.prayer-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 25px var(--ramadan-gold);
 }
 
-th {
-  background: var(--ramadan-purple-mid);
+.prayer-name {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.prayer-name .ar {
+  font-family: 'AraQuran', serif;
+  font-size: 1.4rem;
   color: var(--ramadan-gold);
-  font-weight: bold;
-  border-bottom: 2px solid var(--ramadan-gold);
 }
+
+.prayer-name .en {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.prayer-time {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* reuse your logic but on cards if you want */
+.current-prayer {
+  border: 2px solid var(--ramadan-gold);
+  box-shadow: 0 0 25px var(--ramadan-gold);
+}
+
+.next-prayer {
+  border: 2px solid #b78cff;
+  box-shadow: 0 0 20px rgba(183, 140, 255, 0.7);
+}
+
 
 /* Past Prayer */
 .past-prayer {
