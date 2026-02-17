@@ -582,46 +582,114 @@ table tr {
 /*  Tasbih, Buttons, TV Bar, Social Links        */
 /* --------------------------------------------- */
 
-/* Tasbih Container */
-.tasbih-container {
-  text-align: center;
-  padding: 20px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 14px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4), 0 0 14px var(--ramadan-gold-soft);
-  max-width: 300px;
-  margin: auto;
-  backdrop-filter: blur(6px);
-  color: var(--ramadan-text);
+/* Prevent iPhone zoom on fast taps */
+.tasbih-shell button {
+  font-size: 16px !important;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-/* Tasbih Count */
-#count {
-  font-size: 2.4em;
-  margin-bottom: 20px;
-  color: var(--ramadan-gold);
-  text-shadow: 0 0 10px var(--ramadan-gold-soft);
+/* Tasbih body */
+.tasbih-shell {
+  width: 260px;
+  margin: 40px auto;
+  padding: 28px 22px 32px;
+  background: radial-gradient(circle at 20% 0%, #b300ff, #7705c3 55%, #3b0768 100%);
+  border-radius: 60px 60px 55px 55px;
+  box-shadow:
+    0 12px 25px rgba(0,0,0,0.55),
+    inset 0 4px 10px rgba(255,255,255,0.25),
+    inset 0 -6px 14px rgba(0,0,0,0.5);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Buttons */
-button {
-  margin: 5px;
-  padding: 10px 20px;
-  font-size: 1em;
-  border: 2px solid var(--ramadan-gold);
-  border-radius: 8px;
-  background: linear-gradient(to right, var(--ramadan-purple-mid), var(--ramadan-purple-light));
-  color: var(--ramadan-gold);
+/* Top “lip” curve to mimic real device bulge */
+.tasbih-shell::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 26px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.55), transparent 70%);
+  opacity: 0.7;
+}
+
+/* Screen */
+.tasbih-screen {
+  width: 100%;
+  height: 80px;
+  margin-top: 18px;
+  background: #d8ffd8;
+  border-radius: 18px;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #003300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    inset 0 0 12px rgba(0,0,0,0.4),
+    0 0 10px rgba(144, 8, 249, 0.451);
+}
+
+/* Button row */
+.tasbih-buttons {
+  width: 100%;
+  margin-top: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Base button style */
+.btn {
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
   font-weight: bold;
-  box-shadow: 0 0 12px var(--ramadan-gold-soft);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  color: #fff;
+  box-shadow:
+    inset 0 3px 6px rgba(255,255,255,0.25),
+    inset 0 -4px 8px rgba(0,0,0,0.5),
+    0 5px 12px rgba(0,0,0,0.5);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px var(--ramadan-gold);
+/* Side buttons */
+.minus,
+.reset {
+  width: 60px;
+  height: 60px;
+  font-size: 1.8rem;
 }
+
+/* Center TAP button */
+.tap {
+  width: 100px;
+  height: 100px;
+  font-size: 1.3rem;
+}
+
+/* Colors */
+.minus { background: #e53935; }
+.tap   { background: #43a047; }
+.reset { background: #ffb300; }
+
+/* Press effect */
+.btn:active {
+  transform: scale(0.92);
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.6),
+    0 2px 6px rgba(0,0,0,0.6);
+}
+
 
 /* Social Links */
 .social-links {

@@ -55,13 +55,18 @@
 
 
 <h2>Whispers of Light</h2>
+<div class="tasbih-shell">
+  <div class="tasbih-screen" id="count">0</div>
 
-<div class="tasbih-container" style="margin-top: 40px;">
-  <h2>Tasbih Counter</h2>
-  <div id="count">0</div>
-  <button onclick="incrementTasbih()">Count</button>
-  <button onclick="resetTasbih()">Reset</button>
+  <div class="tasbih-buttons">
+    <button class="btn minus" onclick="decrementTasbih()">−</button>
+    <button class="btn tap" onclick="incrementTasbih()">TAP</button>
+    <button class="btn reset" onclick="resetTasbih()">↻</button>
+  </div>
 </div>
+
+
+
 
 
 <!-- 📖 Surah Al-Mulk PDF Section -->
@@ -147,8 +152,11 @@
 
 <div class="tv-bar">
   <div class="badge">Notices</div>
-  <marquee direction="left" scrollamount="5" behavior="scroll">
-     Donate Now:   Al Hira Educational Centre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Sort Code: 30-64-10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account: 34642160 &nbsp;&nbsp;&nbsp;&nbsp; (May Allah Reward You For Donation Ameen) 
+  <div class="marquee-container">
+    <div class="marquee-text">
+     Donate Now: Al Hira Educational Centre — Sort Code: 30-64-10 — Account: 34642160 (May Allah reward you for your donation)
+    </div>
+  </div>
 </div>
 
 <script>

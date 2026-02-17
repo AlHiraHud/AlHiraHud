@@ -221,19 +221,22 @@ if (isNight || rawdahMode) {
 
 
 let tasbihCount = 0;
-let phrases = ["SubhanAllah", "Alhamdulillah", "Allahu Akbar"];
-let currentPhraseIndex = 0;
 
 function incrementTasbih() {
   tasbihCount++;
-  document.getElementById("count").innerText = tasbihCount;
-
-  // Optional: cycle phrase every 33 counts
-  if (tasbihCount % 33 === 0) {
-    currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-    document.getElementById("phrase").innerText = phrases[currentPhraseIndex];
-  }
+  document.getElementById("count").textContent = tasbihCount;
 }
+
+function decrementTasbih() {
+  if (tasbihCount > 0) tasbihCount--;
+  document.getElementById("count").textContent = tasbihCount;
+}
+
+function resetTasbih() {
+  tasbihCount = 0;
+  document.getElementById("count").textContent = tasbihCount;
+}
+
 
 
 
