@@ -12,24 +12,33 @@
    GLOBAL RESET + BACKGROUND
    =========================== */
 
-   #hydration-popup {
-    position: fixed;
-    bottom: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.85);
-    color: white;
-    padding: 15px 25px;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    transition: bottom 0.6s ease;
-    z-index: 9999;
+/* FULLSCREEN POSTER OVERLAY */
+#poster-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 5000;
 }
 
-#hydration-popup.show {
-    bottom: 20px;
+/* POSTER IMAGE */
+#poster-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 1.2s ease, transform 1.2s ease;
 }
+
+/* FADE + SLIGHT ZOOM ANIMATION */
+#poster-image.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
 
 * {
     margin: 0;
@@ -55,58 +64,7 @@ body {
     flex-direction: column;
 }
 
-/* ===========================
-   FLASHING RED BORDER (SEHRI)
-   =========================== */
-#sehri-alert-border {
-    position: absolute;
-    inset: 0;
-    border: 10px solid transparent;
-    pointer-events: none;
-    z-index: 999;
-    display: none;
-}
 
-.flash-border {
-    animation: flashRed 1s infinite;
-}
-
-@keyframes flashRed {
-    0%   { border-color: rgba(255, 0, 0, 0.1); }
-    50%  { border-color: rgba(255, 0, 0, 1); }
-    100% { border-color: rgba(255, 0, 0, 0.1); }
-}
-
-/* ===========================
-   BIG POPUP WARNING (SEHRI)
-   =========================== */
-#sehri-popup {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-#sehri-popup-content {
-    background: rgba(255, 0, 0, 0.85);
-    padding: 4vh 6vw;
-    border-radius: 1vw;
-    text-align: center;
-    color: #fff;
-    box-shadow: 0 0 40px rgba(255,0,0,0.8);
-}
-
-#sehri-popup-content h1 {
-    font-size: 3.6vw; /* +20% */
-    margin-bottom: 1vh;
-}
-
-#sehri-popup-content p {
-    font-size: 1.9vw; /* +20% */
-}
 
 /* ===========================
    TOP BAR
@@ -211,25 +169,11 @@ body {
     gap: 2vh;
 }
 
-.side-pill {
-    background: rgba(0,0,0,0.55);
-    border: 1px solid rgba(255,255,255,0.25);
-    padding: 2.5vh 1.5vw;
-    border-radius: 1vw;
-    display: flex;
-    justify-content: space-between;
-    color: #fff;
-}
 
-.pill-label {
-    font-size: 1.6vw; /* was 1.2 */
-    opacity: 0.85;
-}
 
-.pill-time {
-    font-size: 2.4vw; /* was 1.8 */
-    font-weight: 700;
-}
+
+
+
 
 /* ===========================
    PRAYER GRID
@@ -271,36 +215,7 @@ body {
     opacity: 0.8;
 }
 
-/* ===========================
-   BOTTOM BAR
-   =========================== */
-#bottom-bar {
-    background: rgba(0,0,0,0.7);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 1vw;
-    padding: 2vh 2vw;
-    display: flex;
-    justify-content: space-between;
-    color: #fff;
-    font-size: 1.6vw; /* was 1.2 */
-}
 
-#qr-box {
-    width: 5vw; /* was 4 */
-    height: 5vw;
-    background: #fff;
-    color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.5vw;
-    font-weight: 700;
-}
-
-#logo-box {
-    opacity: 0.8;
-    font-size: 1.6vw; /* was 1.2 */
-}
 
 .tv-bar {
   position: fixed;
@@ -310,7 +225,7 @@ body {
   background: rgba(20, 0, 40, 0.85);
   border-top: 2px solid #d4af37;
   box-shadow: 0 -2px 12px rgba(0,0,0,0.4);
-  z-index: 9999;
+  z-index: 4999;
   display: flex;
   align-items: center;
   padding: 12px 0;
@@ -354,9 +269,6 @@ body {
 }
 
 
-#logo-box {
-    opacity: 0.8;
-}
 </style>
 </head>
 
@@ -483,9 +395,16 @@ body {
 </div>
 
 
+<div id="poster-overlay">
+    <img id="poster-image" src="" alt="">
+</div>
 
     </div>
 <script>
+
+
+
+
     /* ============================================================
    RAMADAN TIMETABLE (FROM YOUR PDF)
    ============================================================ */
@@ -684,22 +603,25 @@ function mainLoop() {
     if (!row) return;
 
     updateClock();
-    handleSehriAlerts(row);
+    handleSehri(row);     // Sehri countdown ONLY
     handleIftaar(row);
     handleNextPrayer(row);
 }
+function handleSehri(row) {
+    const diff = getTimeDiff(row.fajr);
+    document.getElementById("sehri-timer").textContent = formatDiff(diff);
+}
+
 
 window.onload = () => {
     const row = getTodayRow();
     if (row) loadPrayerTimes(row);
 
     setInterval(mainLoop, 1000);
+
+    startPosterLoop();
+
 };
-
-
-
-
-
 
 
 
@@ -753,6 +675,67 @@ function getWeatherIcon(code, isDay) {
 // Update every 10 minutes
 updateWeather();
 setInterval(updateWeather, 600000);
+
+
+
+
+/* ============================================================
+   POSTER ROTATION SYSTEM
+   ============================================================ */
+
+const posters = [
+    "poster1.png",
+    "poster2.png"
+];
+
+
+let posterIndex = 0;
+
+function showPoster() {
+    const overlay = document.getElementById("poster-overlay");
+    const img = document.getElementById("poster-image");
+
+    // Set poster source
+    img.src = posters[posterIndex];
+    posterIndex = (posterIndex + 1) % posters.length;
+
+    // Show overlay
+    overlay.style.display = "flex";
+
+    // Trigger fade + zoom animation
+    setTimeout(() => {
+        img.classList.add("show");
+    }, 50);
+}
+
+function hidePoster() {
+    const overlay = document.getElementById("poster-overlay");
+    const img = document.getElementById("poster-image");
+
+    // Fade out
+    img.classList.remove("show");
+
+    // Hide after animation
+    setTimeout(() => {
+        overlay.style.display = "none";
+    }, 800);
+}
+
+/* ============================================================
+   LOOP: 30s normal → 10s poster → repeat
+   ============================================================ */
+
+function startPosterLoop() {
+    setInterval(() => {
+        showPoster();
+
+        // Poster stays for 20 seconds
+        setTimeout(() => {
+            hidePoster();
+        }, 20000);
+
+    }, 50000); // 30s normal + 20s poster
+}
 
 
 
