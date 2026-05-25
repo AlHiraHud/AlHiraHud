@@ -7,138 +7,133 @@
   <link rel="stylesheet" href="styles.css" />
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-014PQ64JDX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-014PQ64JDX');
-  </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-014PQ64JDX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-014PQ64JDX');
+</script>
 </head>
 
+
+
+
+</div>
+
+
+
 <body>
+
 
 <!-- Toggle Button -->
 <button id="menu-toggle" aria-label="Toggle menu">☰</button>
 
+
 <!-- Sidebar Navigation -->
 <nav class="sidebar" id="sidebar">
   <ul>
-      <li><a href="index.html">🏠 Home</a></li>
-      <li><a href="donate.html"> 🤝 Donation Appeal</a></li>
-      <li><a href="videos.html">🎥 Videos</a></li>
-      <li><a href="prayer.html">🕌 Prayer Times</a></li>
-      <li><a href="Tasbih.html">📿 Tasbih and Surahs</a></li>
-      <li><a href="announcements.html" class="active">📢 Announcements</a></li>
-      <li><a href="about.html">📖 About</a></li>
+      <a href="index.html">🏠 Home</a>
+      <a href="donate.html"> 🤝 Donatinon Appeal</a>
+      <a href="videos.html">🎥 Videos</a>
+      <a href="prayer.html">🕌 Prayer Times</a>
+      <a href="Tasbih.html">📿 Tasbih and Surahs</a>
+      <a href="announcements.html" class="active">📢 Announcements</a>
+      <a href="about.html">📖 About</a>
   </ul>
 </nav>
+
 
 <div class="header-row">
   <img src="al_hira_centre_logo.png" alt="Al-Hira Centre Huddersfield Logo" class="logo">
   <div class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
 </div>
 
-<div class="ramadan-banner-top">
-  <h2>🌙 Ramadan Kareem 🌙</h2>
-</div>
+    <h1>Welcome to the Al-Hira Education Centre</h1>
+    <p>A space of presence, prayer, and peace</p>
+  </header>
 
-<h1>Welcome to the Al-Hira Education Centre</h1>
-<p>A space of presence, prayer, and peace</p>
 
-<p class="special">Timetable for February 2026.</p>
 
-<!-- Time + Next Prayer -->
+  <p class="special">Timetable for January 2026.</p>
+ <!-- HTML Element to Display Time -->
 <div id="current-time"></div>
 <div id="next-prayer"></div>
 
 
-<div class="prayer-panel">
 
-  <h2 id="prayer-title">🕌Daily Prayer Beginning Times🕌</h2>
-  <p id="table-date" style="font-weight: bold; margin-bottom: 10px;"></p>
 
-  <div class="prayer-cards">
 
-    <div class="prayer-card" data-card="Fajr">
-      <div class="prayer-name">
-        <span class="ar">الفجر</span>
-        <span class="en">Fajr</span>
-      </div>
-      <div class="prayer-time" data-prayer="Fajr">No Data</div>
-    </div>
 
-    <div class="prayer-card" data-card="Sunrise">
-      <div class="prayer-name">
-        <span class="ar">الشروق</span>
-        <span class="en">Sunrise</span>
-      </div>
-      <div class="prayer-time" data-prayer="Sunrise">No Data</div>
-    </div>
+<div style="margin-top: 40px;"></div>
 
-    <div class="prayer-card" data-card="Dhuhr">
-      <div class="prayer-name">
-        <span class="ar">الظهر</span>
-        <span class="en">Dhuhr</span>
-      </div>
-      <div class="prayer-time" data-prayer="Dhuhr">No Data</div>
-    </div>
 
-    <div class="prayer-card" data-card="Asr">
-      <div class="prayer-name">
-        <span class="ar">العصر</span>
-        <span class="en">Asr</span>
-      </div>
-      <div class="prayer-time" data-prayer="Asr">No Data</div>
-    </div>
 
-    <div class="prayer-card" data-card="Maghrib">
-      <div class="prayer-name">
-        <span class="ar">المغرب</span>
-        <span class="en">Maghrib</span>
-      </div>
-      <div class="prayer-time" data-prayer="Maghrib">No Data</div>
-    </div>
 
-    <div class="prayer-card" data-card="Isha">
-      <div class="prayer-name">
-        <span class="ar">العشاء</span>
-        <span class="en">Isha</span>
-      </div>
-      <div class="prayer-time" data-prayer="Isha">No Data</div>
-    </div>
 
-  </div>
 
-</div>
+<h2 id="prayer-title">🕌Daily Prayer Begining Times🕌</h2>
+<p id="table-date" style="font-weight: bold; margin-bottom: 10px;"></p>
 
+<table>
+  <tr><th>Prayer</th><th>Time</th></tr>
+  <tr><td>Fajr</td><td data-prayer="Fajr">No Data</td></tr>
+  <tr><td>Sunrise</td><td data-prayer="Sunrise">No Data</td></tr>
+  <tr><td>Dhuhr</td><td data-prayer="Dhuhr">No Data</td></tr>
+  <tr><td>Asr</td><td data-prayer="Asr">No Data</td></tr>
+  <tr><td>Maghrib</td><td data-prayer="Maghrib">No Data</td></tr>
+  <tr><td>Isha</td><td data-prayer="Isha">No Data</td></tr>
+</table>
+
+<div id="next-prayer" style="
+  background-color: #f9f9f9;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.05);
+  line-height: 1.6;
+  margin-top: 20px;
+"></div>
 
 
 <div class="social-links">
-  <a href="https://www.facebook.com/SuffahFoundation/" target="_blank"><img src="facebook.png"></a>
-  <a href="https://www.youtube.com/@SuffahFoundation" target="_blank"><img src="youtube.png"></a>
-  <a href="https://www.tiktok.com/@suffahfoundation" target="_blank"><img src="tiktok.png"></a>
-  <a href="https://www.instagram.com/suffah_foundation/" target="_blank"><img src="insta.png"></a>
+  <a href="https://www.facebook.com/SuffahFoundation/" target="_blank" aria-label="Facebook">
+    <img src="facebook.png" alt="Facebook">
+  </a>
+  </a>
+  <a href="https://www.youtube.com/@SuffahFoundation" target="_blank" aria-label="YouTube">
+    <img src="youtube.png" alt="YouTube">
+  </a>
+  <a href="https://www.tiktok.com/@suffahfoundation" target="_blank" aria-label="TikTok">
+    <img src="tiktok.png" alt="tiktok">
+  </a>
+  </a>
+  <a href="https://www.instagram.com/suffah_foundation/" target="_blank" aria-label="instagram">
+    <img src="insta.png" alt="instagram">
+  </a>
 </div>
+
+
+
+
 
 <div id="lanternTrail"></div>
 
+
 <button id="backToTop" title="Back to Top">↑</button>
 
-<footer>
-  <p>&copy; 2026 Al-Hira Education Centre </p>
-</footer>
+
+  <footer>
+    <p>&copy; 2026 Al-Hira Education Centre </p>
+  </footer>
+
 
 
 <div class="tv-bar">
   <div class="badge">Notices</div>
-  <div class="marquee-container">
-    <div class="marquee-text">
-     Donate Now: Al Hira Educational Centre — Sort Code: 30-64-10 — Account: 34642160 (May Allah reward you for your donation)
-    </div>
-  </div>
+  <marquee direction="left" scrollamount="5" behavior="scroll">
+     Donate Now:   Al Hira Educational Centre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Sort Code: 30-64-10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account: 34642160 &nbsp;&nbsp;&nbsp;&nbsp; (May Allah Reward You For Donation Ameen) 
 </div>
-
 
 
 <script>
@@ -153,7 +148,21 @@
   });
 </script>
 
-<script src="script.js"></script>
+
+
+  <script src="script.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').then(reg => {
+        console.log('✅ Service Worker registered');
+      }).catch(err => {
+        console.log('❌ Service Worker registration failed:', err);
+      });
+    });
+  }
+</script>
 
 </body>
 </html>

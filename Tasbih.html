@@ -36,13 +36,13 @@
 <!-- Sidebar Navigation -->
 <nav class="sidebar" id="sidebar">
   <ul>
-      <li><a href="index.html">🏠 Home</a></li>
-      <li><a href="donate.html"> 🤝 Donation Appeal</a></li>
-      <li><a href="videos.html">🎥 Videos</a></li>
-      <li><a href="prayer.html">🕌 Prayer Times</a></li>
-      <li><a href="Tasbih.html">📿 Tasbih and Surahs</a></li>
-      <li><a href="announcements.html" class="active">📢 Announcements</a></li>
-      <li><a href="about.html">📖 About</a></li>
+      <a href="index.html">🏠 Home</a>
+      <a href="donate.html"> 🤝 Donation Appeal</a>
+      <a href="videos.html">🎥 Videos</a>
+      <a href="prayer.html">🕌 Prayer Times</a>
+      <a href="Tasbih.html">📿 Tasbih and Surahs</a>
+      <a href="announcements.html" class="active">📢 Announcements</a>
+      <a href="about.html">📖 About</a>
   </ul>
 </nav>
 
@@ -55,18 +55,13 @@
 
 
 <h2>Whispers of Light</h2>
-<div class="tasbih-shell">
-  <div class="tasbih-screen" id="count">0</div>
 
-  <div class="tasbih-buttons">
-    <button class="btn minus" onclick="decrementTasbih()">−</button>
-    <button class="btn tap" onclick="incrementTasbih()">TAP</button>
-    <button class="btn reset" onclick="resetTasbih()">↻</button>
-  </div>
+<div class="tasbih-container" style="margin-top: 40px;">
+  <h2>Tasbih Counter</h2>
+  <div id="count">0</div>
+  <button onclick="incrementTasbih()">Count</button>
+  <button onclick="resetTasbih()">Reset</button>
 </div>
-
-
-
 
 
 <!-- 📖 Surah Al-Mulk PDF Section -->
@@ -144,6 +139,123 @@
 <button id="backToTop" title="Back to Top">↑</button>
 
 
+<div class="names-container">
+  <div class="names-scroll">
+
+    <div class="name">ٱلرَّحْمَـٰنُ</div>
+    <div class="name">ٱلرَّحِيمُ</div>
+    <div class="name">ٱلْمَلِكُ</div>
+    <div class="name">ٱلْقُدُّوسُ</div>
+    <div class="name">ٱلسَّلَامُ</div>
+    <div class="name">ٱلْمُؤْمِنُ</div>
+    <div class="name">ٱلْمُهَيْمِنُ</div>
+    <div class="name">ٱلْعَزِيزُ</div>
+    <div class="name">ٱلْجَبَّارُ</div>
+    <div class="name">ٱلْمُتَكَبِّرُ</div>
+
+    <div class="name">ٱلْخَالِقُ</div>
+    <div class="name">ٱلْبَارِئُ</div>
+    <div class="name">ٱلْمُصَوِّرُ</div>
+    <div class="name">ٱلْغَفَّارُ</div>
+    <div class="name">ٱلْقَهَّارُ</div>
+    <div class="name">ٱلْوَهَّابُ</div>
+    <div class="name">ٱلرَّزَّاقُ</div>
+    <div class="name">ٱلْفَتَّاحُ</div>
+    <div class="name">ٱلْعَلِيمُ</div>
+
+    <div class="name">ٱلْقَابِضُ</div>
+    <div class="name">ٱلْبَاسِطُ</div>
+    <div class="name">ٱلْخَافِضُ</div>
+    <div class="name">ٱلرَّافِعُ</div>
+    <div class="name">ٱلْمُعِزُّ</div>
+    <div class="name">ٱلْمُذِلُّ</div>
+    <div class="name">ٱلسَّمِيعُ</div>
+    <div class="name">ٱلْبَصِيرُ</div>
+    <div class="name">ٱلْحَكَمُ</div>
+    <div class="name">ٱلْعَدْلُ</div>
+
+    <div class="name">ٱللَّطِيفُ</div>
+    <div class="name">ٱلْخَبِيرُ</div>
+    <div class="name">ٱلْحَلِيمُ</div>
+    <div class="name">ٱلْعَظِيمُ</div>
+    <div class="name">ٱلْغَفُورُ</div>
+    <div class="name">ٱلشَّكُورُ</div>
+    <div class="name">ٱلْعَلِيُّ</div>
+    <div class="name">ٱلْكَبِيرُ</div>
+    <div class="name">ٱلْحَفِيظُ</div>
+    <div class="name">ٱلْمُقِيتُ</div>
+
+    <div class="name">ٱلْحَسِيبُ</div>
+    <div class="name">ٱلْجَلِيلُ</div>
+    <div class="name">ٱلْكَرِيمُ</div>
+    <div class="name">ٱلرَّقِيبُ</div>
+    <div class="name">ٱلْمُجِيبُ</div>
+    <div class="name">ٱلْوَاسِعُ</div>
+    <div class="name">ٱلْحَكِيمُ</div>
+    <div class="name">ٱلْوَدُودُ</div>
+    <div class="name">ٱلْمَجِيدُ</div>
+    <div class="name">ٱلْبَاعِثُ</div>
+
+    <div class="name">ٱلشَّهِيدُ</div>
+    <div class="name">ٱلْحَقُّ</div>
+    <div class="name">ٱلْوَكِيلُ</div>
+    <div class="name">ٱلْقَوِيُّ</div>
+    <div class="name">ٱلْمَتِينُ</div>
+    <div class="name">ٱلْوَلِيُّ</div>
+    <div class="name">ٱلْحَمِيدُ</div>
+    <div class="name">ٱلْمُحْصِي</div>
+    <div class="name">ٱلْمُبْدِئُ</div>
+    <div class="name">ٱلْمُعِيدُ</div>
+
+    <div class="name">ٱلْمُحْيِي</div>
+    <div class="name">ٱلْمُمِيتُ</div>
+    <div class="name">ٱلْحَيُّ</div>
+    <div class="name">ٱلْقَيُّومُ</div>
+    <div class="name">ٱلْوَاجِدُ</div>
+    <div class="name">ٱلْمَاجِدُ</div>
+    <div class="name">ٱلْوَاحِدُ</div>
+    <div class="name">ٱلْأَحَدُ</div>
+    <div class="name">ٱلصَّمَدُ</div>
+
+    <div class="name">ٱلْقَادِرُ</div>
+    <div class="name">ٱلْمُقْتَدِرُ</div>
+    <div class="name">ٱلْمُقَدِّمُ</div>
+    <div class="name">ٱلْمُؤَخِّرُ</div>
+    <div class="name">ٱلْأَوَّلُ</div>
+    <div class="name">ٱلْآخِرُ</div>
+    <div class="name">ٱلظَّاهِرُ</div>
+    <div class="name">ٱلْبَاطِنُ</div>
+    <div class="name">ٱلْوَالِي</div>
+    <div class="name">ٱلْمُتَعَالِي</div>
+
+    <div class="name">ٱلْبَرُّ</div>
+    <div class="name">ٱلتَّوَّابُ</div>
+    <div class="name">ٱلْمُنْتَقِمُ</div>
+    <div class="name">ٱلْعَفُوُّ</div>
+    <div class="name">ٱلرَّؤُوفُ</div>
+    <div class="name">مَالِكُ ٱلْمُلْكِ</div>
+    <div class="name">ذُو ٱلْجَلَالِ وَٱلْإِكْرَامِ</div>
+    <div class="name">ٱلْمُقْسِطُ</div>
+    <div class="name">ٱلْجَامِعُ</div>
+    <div class="name">ٱلْغَنِيُّ</div>
+
+    <div class="name">ٱلْمُغْنِي</div>
+    <div class="name">ٱلْمَانِعُ</div>
+    <div class="name">ٱلضَّارُّ</div>
+    <div class="name">ٱلنَّافِعُ</div>
+    <div class="name">ٱلنُّورُ</div>
+    <div class="name">ٱلْهَادِي</div>
+    <div class="name">ٱلْبَدِيعُ</div>
+    <div class="name">ٱلْبَاقِي</div>
+    <div class="name">ٱلْوَارِثُ</div>
+    <div class="name">ٱلرَّشِيدُ</div>
+    <div class="name">ٱلصَّبُورُ</div>
+
+  </div>
+</div>
+
+
+
   <footer>
     <p>&copy; 2026 Al-Hira Education Centre </p>
   </footer>
@@ -152,12 +264,10 @@
 
 <div class="tv-bar">
   <div class="badge">Notices</div>
-  <div class="marquee-container">
-    <div class="marquee-text">
-     Donate Now: Al Hira Educational Centre — Sort Code: 30-64-10 — Account: 34642160 (May Allah reward you for your donation)
-    </div>
-  </div>
+  <marquee direction="left" scrollamount="5" behavior="scroll">
+     Donate Now:   Al Hira Educational Centre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Sort Code: 30-64-10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Account: 34642160 &nbsp;&nbsp;&nbsp;&nbsp; (May Allah Reward You For Donation Ameen) 
 </div>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
